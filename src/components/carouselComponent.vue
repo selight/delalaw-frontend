@@ -26,8 +26,8 @@
          <q-btn class="bg-primary text-white q-mr-lg">read more</q-btn>
       </q-card-section>
       <q-card-section :hidden="hidden" >
-        <div class=" text-secondary "> <div>Addis ababa, Ethiopia</div> <q-space/>
-         <q-btn class="bg-primary text-white q-mr-lg">rent</q-btn></div>
+        <div class="row text-secondary justify-between "> <div class="col-6">Addis ababa, Ethiopia</div>
+         <q-btn class="col-3 bg-primary text-white">rent</q-btn></div>
       </q-card-section>
     </q-card>
 </template>
