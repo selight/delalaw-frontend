@@ -2,7 +2,7 @@
   <q-layout view="hHh lpR fff" class="q-py-md" >
     <q-header elevated  class="" style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">
       <q-toolbar  >
-        <q-toolbar-title class="text-h3 ">
+        <q-toolbar-title class="text-h4 ">
           ደላላው
         </q-toolbar-title>
    

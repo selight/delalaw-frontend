@@ -8,28 +8,33 @@
              style="max-width: 400px; height:200px;"
       />
       <!-- The question -->
-      <div class="col-12 flex flex-center" style="border:  red">
+      <div class="col-12 flex flex-center" style="text-align:center;">
         <div class="q-ml-lg text-secondary text-h1 ">What are you looking for?</div>
       </div>
       <!-- Main buttons -->
       <div class="col-12 " style="">
-        <div class="row q-gutter-lg justify-evenly text-white q-mt-md">
-          <q-btn color="primary" flat rounded size="">
+        <div class="row q-gutter-lg justify-evenly text-white  q-mt-md" >
+          <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
+          <q-btn color="primary" flat rounded  to="/roommate">
             <q-img src="~assets/office.svg"></q-img>
             Roommate
-          </q-btn>
-          <q-btn color="primary" flat rounded size="">
+          </q-btn></div>
+             <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
+         <q-btn color="primary" flat rounded size="">
             <q-img src="~assets/football.svg"></q-img>
             Sport news
-          </q-btn>
-          <q-btn color="primary" flat rounded size="">
+          </q-btn></div>
+             <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
+          <q-btn color="primary" flat rounded >
             <q-img src="~assets/wrench.svg"></q-img>
             Handyman
-          </q-btn>
-          <q-btn color="primary" flat rounded size="">
+          </q-btn></div>
+             <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
+          <q-btn color="primary" flat rounded >
             <q-img src="~assets/dating1.svg"></q-img>
-            enetewawek
-          </q-btn>
+            Enetewawek
+          </q-btn></div>
+
         </div>
       </div>
       <!-- Roommate -->
@@ -82,7 +87,7 @@
           <div class="text-h2 text-secondary col-12">Enetewawek</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">
-              <avatar-component :key="index" class="col-md-2 col-sm-5 col-xs-12 "
+              <avatar-component :key="index" class="col-md-2 col-sm-5 col-xs-5 "
                                               v-for="(item, index) in 4"/>
               <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
             </div>

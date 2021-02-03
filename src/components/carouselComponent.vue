@@ -14,10 +14,8 @@
       <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
       <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
     </q-carousel>
-    <q-card-section v-if="hidden===true">
-    <q-card-title  >
+    <q-card-section v-if="hidden===true" class="text-h6">
        Lorem ipsum
-    </q-card-title>
     </q-card-section>
  <q-card-section v-if="hidden===true"  >
         Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -34,7 +32,7 @@
 
 <script>
 export default {
-  name: 'EssentialLink',
+  name: 'CarouselComponent',
   props: {
     hidden: {
       type: Boolean,
