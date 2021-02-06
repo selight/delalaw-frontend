@@ -1,7 +1,7 @@
 <template>
     <q-card    flat>
       <div :hidden="!hidden">
-      <q-img  src="../assets/dating.svg" contain style="max-height: 200px">
+      <q-img  :src="require(`../assets/${src}`)" contain style="max-height: 200px">
 
       </q-img></div>
       <q-card-section :hidden="hidden" >
@@ -32,7 +32,14 @@
           type: Boolean,
           default:false
         },
-      }
+        src:{
+          type:String,
+          default: "Rent.svg"
+        }
+      },
+      methods: {
+
+        },
     }
 </script>
 

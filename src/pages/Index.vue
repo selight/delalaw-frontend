@@ -20,9 +20,9 @@
             Roommate
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
-         <q-btn color="primary" flat rounded size="">
+         <q-btn color="primary" flat rounded to="/newsfeed" >
             <q-img src="~assets/football.svg"></q-img>
-            Sport news
+            News Feed
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
           <q-btn color="primary" flat rounded >
@@ -101,7 +101,7 @@
 <script>
   import CarouselComponent from "../components/carouselComponent.vue";
   import AvatarComponent from "components/avatarComponent";
-
+  import {mapActions} from 'vuex'
   // import CarouselComponent from '../components/carouselComponent.vue'
   export default {
     name: "PageIndex",
@@ -131,6 +131,9 @@
         },
       };
     },
+    methods:{
+
+    }
   };
 </script>
 <style>

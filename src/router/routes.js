@@ -11,7 +11,15 @@ const routes = [
     path: '/roommate',
     component: () => import('layouts/pageLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/Roommate.vue') }
+      { path: '', component: () => import('pages/Roommate/Roommate.vue') }
+    ]
+  },
+  {
+    path: '/newsfeed',
+    component: () => import('layouts/pageLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/NewsFeed/NewsFeed.vue') },
+      { path: 'sport', component: () => import('pages/NewsFeed/Sport.vue') }
     ]
   },
 

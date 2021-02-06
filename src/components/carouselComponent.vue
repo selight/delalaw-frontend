@@ -14,6 +14,7 @@
       <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
       <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
     </q-carousel>
+
     <q-card-section v-if="hidden===true" class="text-h6">
        Lorem ipsum
     </q-card-section>
@@ -28,6 +29,7 @@
          <q-btn class="col-3 bg-primary text-white">rent</q-btn></div>
       </q-card-section>
     </q-card>
+
 </template>
 
 <script>
