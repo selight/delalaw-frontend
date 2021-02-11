@@ -21,9 +21,9 @@
     </q-input></div>
     <q-separator v-if="hidden"/>
     <div class="row q-ma-md justify-evenly " v-if="!hidden" >
-      <card-component  src="keyboard.svg" class="col-2" v-bind:hidden="true"/>
-    <card-component src="Rent.svg" class="col-2 q-mt-sm" v-bind:hidden="true"/>
-    <card-component src="communicate.svg" class="col-2" v-bind:hidden="true"/>
+      <card-component  src="keyboard.svg" class="col-2" note="Type in your location" v-bind:hidden="true"> </card-component>
+    <card-component src="Rent.svg" class="col-2 q-mt-sm" note="Click on the rent button" v-bind:hidden="true"/>
+    <card-component src="communicate.svg" class="col-2" note="Communicate with the owner" v-bind:hidden="true"/>
 <!--      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3231.2068720612087!2d-78.45236865!3d35.917436083!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ac4fb5f20dd3c3%3A0x6e08b61d485085cc!2sNew%20Bethel%20Baptist%20Church!5e0!3m2!1sen!2set!4v1612381357884!5m2!1sen!2set" width="500" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
     </div>
     <div class="row q-mb-lg q-mx-md q-mt-md justify-between q-gutter-md" v-if="hidden">

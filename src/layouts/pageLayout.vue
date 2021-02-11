@@ -7,19 +7,22 @@
           <q-btn flat class="no-padding no-margin" dense to="/"><div class="text-h4 no-margin">ደላላው</div></q-btn>
           <div class="text-h6 q-pt-md text-info">{{$route.path.split('/')[1].toUpperCase()}}</div>
           <q-space/>
+          <q-btn class="bg-secondary" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
           <q-btn flat>Sign in</q-btn>
         </q-toolbar>
-        <div class="col-12 text-white justify-start q-gutter-md"  v-if="$route.path.split('/')[1]==='newsfeed'" >
+        <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
+
           <q-btn flat to="/newsfeed/"> Recent</q-btn><q-btn flat to="/newsfeed/sport"> Sport</q-btn>
-          <q-btn flat > Joke</q-btn><q-btn flat> Personal stories </q-btn>
-          <q-btn flat > Politics </q-btn><q-btn flat> Other</q-btn>
+          <q-btn flat > Entertainment</q-btn><q-btn flat> Personal stories </q-btn>
+          <q-btn flat> Other</q-btn>
+
         </div>
       </q-header>
 
-      <q-drawer  v-model="left" :width="200" side="left"  >
+      <q-drawer elevated v-model="left" :width="200" side="left"  >
         <q-scroll-area class="fit">
         <q-list padding class="menu-list text-secondary">
-          <q-item active clickable v-ripple to="/roommate">
+          <q-item  clickable v-ripple to="/roommate" v-on:click="left=false">
             <q-item-section avatar>
               <q-icon name="home" />
             </q-item-section>
@@ -29,7 +32,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item  clickable v-ripple to="/newsfeed">
+          <q-item  clickable v-ripple to="/newsfeed" v-on:click="left=false">
             <q-item-section avatar>
               <q-icon name="sports_soccer"  />
             </q-item-section>
@@ -38,7 +41,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple to="/handyman" v-on:click="left=false">
             <q-item-section avatar>
               <q-icon name="construction" />
             </q-item-section>
@@ -48,7 +51,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple to="/entewawek" v-on:click="left=false">
             <q-item-section avatar>
               <q-icon name="contact_page" />
             </q-item-section>
@@ -62,7 +65,6 @@
       </q-drawer>
 
       <q-page-container class="row" >
-
         <router-view />
       </q-page-container>
 

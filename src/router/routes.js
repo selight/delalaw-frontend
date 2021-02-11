@@ -22,6 +22,19 @@ const routes = [
       { path: 'sport', component: () => import('pages/NewsFeed/Sport.vue') }
     ]
   },
+  {
+    path: '/handyman',
+    component: () => import('layouts/pageLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Handyman/Handyman.vue') },
+    ]
+  },  {
+    path: '/entewawek',
+    component: () => import('layouts/pageLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Entewawek/Enetewawek.vue') },
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

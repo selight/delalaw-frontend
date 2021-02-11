@@ -25,13 +25,13 @@
             News Feed
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
-          <q-btn color="primary" flat rounded >
+          <q-btn color="primary" flat rounded to="/handyman">
             <q-img src="~assets/wrench.svg"></q-img>
             Handyman
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
-          <q-btn color="primary" flat rounded >
-            <q-img src="~assets/dating1.svg"></q-img>
+          <q-btn color="primary" flat rounded to="/entewawek">
+            <q-img src="~assets/dating1.svg" ></q-img>
             Enetewawek
           </q-btn></div>
 
@@ -53,10 +53,10 @@
         </div>
 
       </div>
-      <!-- Sport News -->
+      <!-- News feed -->
       <div class="col-12 q-my-md q-pb-md ">
         <div class="row q-gutter-md q-ma-md justify-start">
-          <div class="text-h2 text-secondary col-12">Sport News</div>
+          <div class="text-h2 text-secondary col-12">NewsFeed</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">
               <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-bind:hidden="true"

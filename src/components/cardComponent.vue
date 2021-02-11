@@ -3,7 +3,9 @@
       <div :hidden="!hidden">
       <q-img  :src="require(`../assets/${src}`)" contain style="max-height: 200px">
 
-      </q-img></div>
+      </q-img>
+     <div class="text-bold text-secondary text-center q-pt-sm text-subtitle1"> {{note}}</div>
+      </div>
       <q-card-section :hidden="hidden" >
         <div class="text-h4 text-secondary">
           Share your room with people
@@ -35,6 +37,9 @@
         src:{
           type:String,
           default: "Rent.svg"
+        },
+        note:{
+          type:String
         }
       },
       methods: {
