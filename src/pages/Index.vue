@@ -40,25 +40,24 @@
         </div>
       </div>
       <!-- Roommate -->
-      <div class="col-12 q-my-md q-pb-md ">
-        <div class="row q-gutter-md q-ma-md justify-start">
-          <div class="text-h2 text-secondary col-12">Roommate</div>
+<!--      <div class="col-12 q-my-md q-pb-md ">-->
+<!--        <div class="row q-gutter-md q-ma-lg-md q-ma-md-md justify-start">-->
+          <div class="text-h2 text-secondary q-ma-md col-12">Roommate</div>
           <div class="col-12">
             <div class="row q-gutter-md  justify-evenly">
-
               <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in 3"/>
-
               <q-btn class="q-ml-lg text-primary" to="/roommate" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
             </div>
           </div>
 
-        </div>
+<!--        </div>-->
 
-      </div>
+<!--      </div>-->
+
       <!-- News feed -->
-      <div class="col-12 q-my-md q-pb-md ">
-        <div class="row q-gutter-md q-ma-md justify-start">
-          <div class="text-h2 text-secondary col-12">NewsFeed</div>
+<!--      <div class="col-12 q-my-md q-pb-md ">-->
+<!--        <div class="row q-gutter-md q-ma-md justify-start">-->
+          <div class="text-h2 text-secondary q-ma-md col-12">NewsFeed</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">
               <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-bind:hidden="true"
@@ -66,12 +65,13 @@
               <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" to="/newsfeed" rounded size="lg">See more</q-btn>
             </div>
           </div>
-        </div>
-      </div>
+<!--        </div>-->
+<!--      </div>-->
+
       <!-- Handyman -->
       <div class="col-12 ">
-        <div class="row q-gutter-md q-ma-md justify-evenly">
-          <div class="text-h2 text-secondary col-12">Handyman</div>
+        <div class="row q-gutter-md  justify-evenly">
+          <div class="text-h2  text-secondary col-12">Handyman</div>
 
           <q-btn :class="btnStyle" :key="index" @mouseleave="btnStyle=btnStyle1" @mouseover="btnStyle=btnStyle2"
                  color="primary" flat rounded style="border:solid;  min-height:200px"
@@ -83,10 +83,11 @@
           <q-btn class="q-ml-lg text-primary" to="/handyman" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
         </div>
       </div>
+
       <!-- Enetewawek -->
-      <div class="col-12 q-my-md q-pb-md ">
-        <div class="row q-gutter-md q-ma-md justify-start">
-          <div class="text-h2 text-secondary col-12">Enetewawek</div>
+<!--      <div class="col-12 q-my-md q-pb-md ">-->
+<!--        <div class="row q-gutter-md q-ma-md justify-start">-->
+          <div class="text-h2 q-ma-md text-secondary col-12">Enetewawek</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">
               <avatar-component :key="index" class="col-md-2 col-sm-5 col-xs-5 "
@@ -96,8 +97,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 </template>
 
 <script>
