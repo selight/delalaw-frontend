@@ -1,38 +1,40 @@
 <template>
-  <q-page>
-    <div class="row q-gutter-md flex flex-center">
+  <div class="col-12 q-pa-sm">
+    <div class="row justify-center">
       <q-img alt="Quasar logo"
-             class="col "
+             class="col-12 q-mb-lg "
              contain
              src="~assets/quasar-logo-full.svg"
              style="max-width: 400px; height:200px;"
       />
       <!-- The question -->
-      <div class="col-12 flex flex-center" style="text-align:center;">
-        <div class="q-ml-lg text-secondary text-h1 ">What are you looking for?</div>
+      <div class="col-12 text-center" style="text-align:center;">
+        <div class="q-ml-lg text-secondary text-h1 desktop-only mobile-hide">What are you looking for?</div>
+        <div class="text-secondary text-h3 desktop-hide">What are you looking for?</div>
       </div>
       <!-- Main buttons -->
-      <div class="col-12 " style="">
-        <div class="row q-gutter-lg justify-evenly text-white  q-mt-md" >
+      <div class="col-12 " >
+        <div class="row q-gutter-lg justify-evenly text-white  q-mt-md"  >
           <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
           <q-btn color="primary" flat rounded  to="/roommate">
-            <q-img src="~assets/office.svg"></q-img>
-            Roommate
+            <q-img src="~assets/office.svg" style="max-width: 80px" ></q-img>
+            <span class="q-mt-sm">Roommate</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
          <q-btn color="primary" flat rounded to="/newsfeed" >
-            <q-img src="~assets/football.svg"></q-img>
-            News Feed
+            <q-img src="~assets/football.svg" style="max-width: 80px"></q-img>
+           <span class="q-mt-sm">News Feed</span>
           </q-btn></div>
-             <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
+             <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style=" text-align:center;">
           <q-btn color="primary" flat rounded to="/handyman">
-            <q-img src="~assets/wrench.svg"></q-img>
-            Handyman
+            <q-img src="~assets/wrench.svg" style="max-width: 80px"></q-img>
+
+            <span class="q-mt-sm">Handyman</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
-          <q-btn color="primary" flat rounded to="/entewawek">
-            <q-img src="~assets/dating1.svg" ></q-img>
-            Enetewawek
+          <q-btn color="primary"   flat rounded to="/enetewawek">
+            <q-img src="~assets/dating1.svg" style="max-width: 80px" ></q-img>
+            <span class="q-mt-sm ">Enetewawek</span>
           </q-btn></div>
 
         </div>
@@ -42,11 +44,11 @@
         <div class="row q-gutter-md q-ma-md justify-start">
           <div class="text-h2 text-secondary col-12">Roommate</div>
           <div class="col-12">
-            <div class="row q-gutter-md justify-evenly">
+            <div class="row q-gutter-md  justify-evenly">
 
               <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in 3"/>
 
-              <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
+              <q-btn class="q-ml-lg text-primary" to="/roommate" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
             </div>
           </div>
 
@@ -61,7 +63,7 @@
             <div class="row q-gutter-md justify-evenly">
               <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-bind:hidden="true"
                                   v-for="(item, index) in 3"></carousel-component>
-              <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
+              <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" to="/newsfeed" rounded size="lg">See more</q-btn>
             </div>
           </div>
         </div>
@@ -78,7 +80,7 @@
 
             <span>Electrician</span>
           </q-btn>
-          <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
+          <q-btn class="q-ml-lg text-primary" to="/handyman" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
         </div>
       </div>
       <!-- Enetewawek -->
@@ -89,13 +91,13 @@
             <div class="row q-gutter-md justify-evenly">
               <avatar-component :key="index" class="col-md-2 col-sm-5 col-xs-5 "
                                               v-for="(item, index) in 4"/>
-              <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
+              <q-btn class="q-ml-lg text-primary" icon="arrow_forward_ios" to="/enetewawek" rounded size="lg">See more</q-btn>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </q-page>
+  </div>
 </template>
 
 <script>

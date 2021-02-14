@@ -54,23 +54,23 @@
     </q-item>
   </q-list>
 </div>
-    <div class=" col-6 ">
-      <div class="row q-gutter-md">
-  <q-card v-for="(item, index) in 4" :key="index" class="col-12 flat bordered">
+<!--    <div class=" col-lg-6 col-md-6 col-sm-4 col-xs-12  ">-->
+<!--      <div class="row q-gutter-md justify-start">-->
+  <q-card v-for="(item, index) in 4" :key="index" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 flat bordered">
     <q-card-section horizontal class="">
       <div class="q-px-lg text-white bg-secondary row justify-center" style="border-right: solid 1px" >
-        <div class="text-center">Selam</div>
+        <div class="text-center col-3">Selam</div>
         <q-avatar size="120px"  class="bg-white q-ma-xs">
           <q-img contain src="~/assets/dating.svg"/>
         </q-avatar>
         <div class="text-center">Plumbing,Home service</div>
       </div>
 
-      <q-card-section class="col-8">
+      <q-card-section class="col-6">
         <div class="text-subtitle2">Job title: <span class="text-secondary  text-subtitle2">Plumber</span></div>
-        <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>
-        <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this
-        and look at that.</span></div>
+<!--        <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>-->
+<!--        <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this-->
+<!--        and look at that.</span></div>-->
         <div class="text-subtitle2">Location: <span class="text-secondary">Los Angeles</span></div>
 <!--        <div class="absolute-bottom q-ml-md"><q-rating></q-rating> 4.5/5</div>-->
       </q-card-section>
@@ -79,15 +79,16 @@
       <q-btn  dense class="q-pa-sm">contact</q-btn>
     </q-card-actions>
 <!--    [{name: mel, bio:40, chem:80, geo:50,art:100},{name: sel, bio:40, chem:80, geo:50,art:100}]-->
-  </q-card></div></div>
-    <q-card class="col-4">
-      <div class="text-h6 ">Reviews</div>
-  <q-card v-for="(item, index) in 4" :key="index" ><q-card-section>
-    <div class="text-caption text-weight-light ">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua.
-    </div>
-  </q-card-section></q-card></q-card>
+  </q-card>
+<!--  </div></div>-->
+<!--    <q-card class="col-4">-->
+<!--      <div class="text-h6 ">Reviews</div>-->
+<!--  <q-card v-for="(item, index) in 4" :key="index" ><q-card-section>-->
+<!--    <div class="text-caption text-weight-light ">-->
+<!--      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut-->
+<!--      labore et dolore magna aliqua.-->
+<!--    </div>-->
+<!--  </q-card-section></q-card></q-card>-->
   </div>
 
 

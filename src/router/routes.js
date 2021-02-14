@@ -8,6 +8,13 @@ const routes = [
     ]
   },
   {
+    path: '/test',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/test.vue') }
+    ]
+  },
+  {
     path: '/roommate',
     component: () => import('layouts/pageLayout.vue'),
     children: [
@@ -29,7 +36,7 @@ const routes = [
       { path: '', component: () => import('pages/Handyman/Handyman.vue') },
     ]
   },  {
-    path: '/entewawek',
+    path: '/enetewawek',
     component: () => import('layouts/pageLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Entewawek/Enetewawek.vue') },

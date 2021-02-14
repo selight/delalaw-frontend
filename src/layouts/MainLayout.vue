@@ -3,9 +3,9 @@
     <q-header elevated  class="" style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">
       <q-toolbar  >
         <q-toolbar-title class="text-h4 ">
-          ደላላው
+          <q-item clickable to="/"  class="text-h4 text-white">ደላላው</q-item>
         </q-toolbar-title>
-   
+
         <q-btn flat rounded label="Sign in" >
 
           <!-- <q-menu>
@@ -28,7 +28,7 @@
     <q-footer elevated class="bg-grey-8 text-white">
       <q-toolbar>
         <q-toolbar-title>
-          
+
         </q-toolbar-title>
       </q-toolbar>
     </q-footer>

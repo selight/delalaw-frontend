@@ -2,13 +2,13 @@
     <q-layout view="hHh LpR fff" class="">
       <q-header  elevated style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">
         <q-toolbar>
-          <q-btn dense flat icon="menu" @click="left = !left" > <div class="q-ml-sm">Services</div></q-btn>
+          <q-btn dense flat icon="menu" @click="left = !left" > <div class="q-ml-sm mobile-hide">Services</div></q-btn>
           <q-space/>
           <q-btn flat class="no-padding no-margin" dense to="/"><div class="text-h4 no-margin">ደላላው</div></q-btn>
           <div class="text-h6 q-pt-md text-info">{{$route.path.split('/')[1].toUpperCase()}}</div>
           <q-space/>
-          <q-btn class="bg-secondary" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
-          <q-btn flat>Sign in</q-btn>
+          <q-btn dense class="bg-secondary" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
+          <q-btn flat class="mobile-hide">Sign in</q-btn>
         </q-toolbar>
         <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
 
@@ -51,7 +51,7 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple to="/entewawek" v-on:click="left=false">
+          <q-item clickable v-ripple to="/enetewawek" v-on:click="left=false">
             <q-item-section avatar>
               <q-icon name="contact_page" />
             </q-item-section>
