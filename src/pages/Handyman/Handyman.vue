@@ -1,16 +1,18 @@
 <template>
 <!--  <q-btn v-on:click="mel()">go</q-btn>-->
   <div class="row justify-between q-gutter-md q-ma-sm">
+        <!--    Top Nav bar-->
 <div class="col-12">
   <q-list  class="row justify-center">
-    <q-item clickable v-ripple class="column items-center" active>
+    <q-item  clickable v-ripple   active>
+      <q-item-section class=" column items-center">
       <q-icon name="construction" size="md"  color="secondary"></q-icon>
       <q-item-section class="text-subtitle1">General</q-item-section>
-
+      </q-item-section>
     </q-item>
 <q-separator vertical/>
     <q-item clickable v-ripple >
-      <q-item-section class="column items-center">
+      <q-item-section class=" column items-center">
         <q-icon name="plumbing" size="md"  color="secondary"></q-icon>
         <q-item-section>Plumbing Services</q-item-section>
       </q-item-section>
@@ -18,7 +20,7 @@
     </q-item>
     <q-separator vertical/>
     <q-item clickable v-ripple>
-      <q-item-section class="column items-center">
+      <q-item-section class=" column items-center">
         <q-icon name="electrical_services" size="md"  color="secondary"></q-icon>
         <q-item-section>Mechanical Services</q-item-section>
       </q-item-section>
@@ -57,27 +59,28 @@
 <!--    <div class=" col-lg-6 col-md-6 col-sm-4 col-xs-12  ">-->
 <!--      <div class="row q-gutter-md justify-start">-->
   <q-card v-for="(item, index) in 4" :key="index" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 flat bordered">
-    <q-card-section horizontal class="">
+    <q-card-section horizontal >
       <div class="q-px-lg text-white bg-secondary row justify-center" style="border-right: solid 1px" >
-        <div class="text-center col-3">Selam</div>
-        <q-avatar size="120px"  class="bg-white q-ma-xs">
+        <div class="col-12 text-center" >Selam</div>
+        <q-avatar style="max-width: 120px;"  class="bg-white col-12 q-ma-xs text-center">
           <q-img contain src="~/assets/dating.svg"/>
         </q-avatar>
-        <div class="text-center">Plumbing,Home service</div>
+        <div class=" col-12 text-center">Plumbing,Home service</div>
       </div>
 
-      <q-card-section class="col-6">
+      <q-card-section class="col-7" style="border: solid">
         <div class="text-subtitle2">Job title: <span class="text-secondary  text-subtitle2">Plumber</span></div>
-<!--        <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>-->
-<!--        <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this-->
-<!--        and look at that.</span></div>-->
+        <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>
+        <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this
+        and look at that.</span></div>
         <div class="text-subtitle2">Location: <span class="text-secondary">Los Angeles</span></div>
 <!--        <div class="absolute-bottom q-ml-md"><q-rating></q-rating> 4.5/5</div>-->
+<div class="row justify-end">
+          <q-btn   class="">contact</q-btn>
+</div>
       </q-card-section>
     </q-card-section>
-    <q-card-actions class="absolute-bottom-right"  >
-      <q-btn  dense class="q-pa-sm">contact</q-btn>
-    </q-card-actions>
+
 <!--    [{name: mel, bio:40, chem:80, geo:50,art:100},{name: sel, bio:40, chem:80, geo:50,art:100}]-->
   </q-card>
 <!--  </div></div>-->

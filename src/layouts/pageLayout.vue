@@ -7,7 +7,7 @@
           <q-btn flat class="no-padding no-margin" dense to="/"><div class="text-h4 no-margin">ደላላው</div></q-btn>
           <div class="text-h6 q-pt-md text-info">{{$route.path.split('/')[1].toUpperCase()}}</div>
           <q-space/>
-          <q-btn dense class="bg-secondary" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
+          <q-btn dense class="bg-secondary mobile-hide" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
           <q-btn flat class="mobile-hide">Sign in</q-btn>
         </q-toolbar>
         <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
@@ -68,10 +68,24 @@
         <router-view />
       </q-page-container>
 
-      <q-footer class="bg-grey-8">
-<q-toolbar>
+      <q-footer class="bg-grey-8" :reveal="reveal">
+        <q-toolbar class="mobile-hide"></q-toolbar>
 
-</q-toolbar>
+  <q-tabs
+
+    v-model="tab"
+    dense
+    indicator-color="transparent"
+    active-color="secondary"
+style="font-size: xx-small"
+    class="bg-accent text-grey-5  shadow-2 mobile-only "
+  >
+    <q-tab name="Home" icon="home" label="" >Home</q-tab>
+    <q-tab name="List" icon="mail" class="text-white"   style="font-size: small" >List your room</q-tab>
+    <q-tab name="search" icon="search" label="" >Find a room</q-tab>
+    <q-tab name="signIn" icon="person" label="" > SignIn</q-tab>
+  </q-tabs>
+<!--</q-toolbar>-->
       </q-footer>
     </q-layout>
 </template>
@@ -82,6 +96,8 @@
       data() {
         return {
           left:false,
+          tab:'mails',
+          reveal:this.$q.platform.is.mobile,
         }}
     }
 </script>
