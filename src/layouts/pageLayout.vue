@@ -12,11 +12,14 @@
           <q-btn flat class="mobile-hide">Sign in</q-btn>
         </q-toolbar>
         <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
-
-          <q-btn flat to="/newsfeed/"> Recent</q-btn><q-btn flat to="/newsfeed/sport"> Sport</q-btn>
-          <q-btn flat > Entertainment</q-btn><q-btn flat class="mobile-hide"> Personal stories </q-btn>
-          <q-btn flat class="mobile-hide"> Other</q-btn> <q-btn flat icon="more_horiz">
-          <q-menu class="desktop-hide">
+<div class="row justify-evenly">
+          <q-btn flat to="/newsfeed/" class="col-2">Recent</q-btn>
+  <q-btn flat to="/newsfeed/sport" class="col-2" >Sport</q-btn>
+          <q-btn flat class="col-3" >Entertainment</q-btn>
+  <q-btn flat class="mobile-hide" >Personal stories </q-btn>
+          <q-btn flat class="mobile-hide"> Other</q-btn>
+  <q-btn flat class="desktop-hide" icon="more_horiz" >
+          <q-menu >
             <q-list>
               <q-item clickable v-close-popup>
                 <q-item-section>Personal Stories</q-item-section>
@@ -27,7 +30,7 @@
             </q-list>
           </q-menu>
             </q-btn>
-
+</div>
         </div>
       </q-header>
 
