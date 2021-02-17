@@ -19,6 +19,7 @@
         <q-btn icon="search" v-on:click="hidden=true , red='justify-start q-ma-sm', col='col-md-8 col-lg-8 col-xs-12 '" flat round color="secondary" />
       </template>
     </q-input></div>
+
     <q-separator v-if="hidden"/>
       <!--    Top cities on the first page-->
     <div class="row q-ma-md justify-center  q-mt-lg" v-if="!hidden" >

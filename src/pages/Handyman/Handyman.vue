@@ -1,9 +1,47 @@
 <template>
 <!--  <q-btn v-on:click="mel()">go</q-btn>-->
-  <div class="row justify-between q-gutter-md q-ma-sm">
+  <div class="col-12">
+  <div class="row justify-between q-ma-sm   ">
         <!--    Top Nav bar-->
+    <div class="col-12 ">
+      <q-select
+        multiple
+        v-model="model"
+        :options="options"
+        use-chips
+        color="secondary"
+        clearable
+        rounded
+        outlined
+        options-selected-class="text-primary"
+        class="q-mx-sm   desktop-hide"
+        behavior="menu"
+      >
+        <template v-slot:no-option>
+          <q-item>
+            <q-item-section class="text-grey">
+              No results
+            </q-item-section>
+          </q-item>
+        </template>
+        <template v-slot:option="scope">
+          <q-item
+            v-bind="scope.itemProps"
+            v-on="scope.itemEvents"
+          >
+            <q-item-section avatar>
+              <q-icon :name="scope.opt.icon" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label v-html="scope.opt.label" />
+              <q-item-label caption>{{ scope.opt.description }}</q-item-label>
+            </q-item-section>
+          </q-item>
+        </template>
+      </q-select></div>
 <div class="col-12">
-  <q-list  class="row justify-center">
+
+  <q-list  class="row justify-center desktop-only">
     <q-item  clickable v-ripple   active>
       <q-item-section class=" column items-center">
       <q-icon name="construction" size="md"  color="secondary"></q-icon>
@@ -56,44 +94,46 @@
     </q-item>
   </q-list>
 </div>
-<!--    <div class=" col-lg-6 col-md-6 col-sm-4 col-xs-12  ">-->
-<!--      <div class="row q-gutter-md justify-start">-->
-  <q-card v-for="(item, index) in 4" :key="index" class="col-lg-6 col-md-6 col-sm-4 col-xs-12 flat bordered">
-    <q-card-section horizontal >
-      <div class="q-px-lg text-white bg-secondary row justify-center" style="border-right: solid 1px" >
+
+    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 q-mt-md ">
+      <div class="row q-gutter-md">
+  <q-card v-for="(item, index) in 4" :key="index" class=" flat bordered">
+    <q-card-section horizontal class="row " >
+      <q-card-section class=" text-white bg-secondary col-5" style="border-right: solid 1px" >
+        <div class="column items-center q-gutter-sm">
         <div class="col-12 text-center" >Selam</div>
-        <q-avatar style="max-width: 120px;"  class="bg-white col-12 q-ma-xs text-center">
+        <q-avatar size="120px"  class="bg-white  q-ma-xs text-center">
           <q-img contain src="~/assets/dating.svg"/>
         </q-avatar>
-        <div class=" col-12 text-center">Plumbing,Home service</div>
-      </div>
+        <div class=" col-12 text-center">Plumbing,Home service</div></div>
+      </q-card-section>
 
-      <q-card-section class="col-7" style="border: solid">
+      <q-card-section class="col-7" >
         <div class="text-subtitle2">Job title: <span class="text-secondary  text-subtitle2">Plumber</span></div>
         <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>
         <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this
         and look at that.</span></div>
         <div class="text-subtitle2">Location: <span class="text-secondary">Los Angeles</span></div>
-<!--        <div class="absolute-bottom q-ml-md"><q-rating></q-rating> 4.5/5</div>-->
+
 <div class="row justify-end">
-          <q-btn   class="">contact</q-btn>
+          <q-btn   class="q-ma-sm absolute-bottom-right">contact</q-btn>
 </div>
       </q-card-section>
     </q-card-section>
-
-<!--    [{name: mel, bio:40, chem:80, geo:50,art:100},{name: sel, bio:40, chem:80, geo:50,art:100}]-->
   </q-card>
-<!--  </div></div>-->
-<!--    <q-card class="col-4">-->
-<!--      <div class="text-h6 ">Reviews</div>-->
-<!--  <q-card v-for="(item, index) in 4" :key="index" ><q-card-section>-->
-<!--    <div class="text-caption text-weight-light ">-->
-<!--      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut-->
-<!--      labore et dolore magna aliqua.-->
-<!--    </div>-->
-<!--  </q-card-section></q-card></q-card>-->
+    </div></div>
+      <div class="col-lg-4 col-md-4 col-xs-12 q-mt-md ">
+    <q-card >
+      <div class="text-h6 q-ma-sm">Reviews</div>
+  <q-card v-for="(item, index) in 4" :key="index" ><q-card-section>
+    <div class="text-caption text-weight-light ">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua.
+    </div>
+  </q-card-section></q-card></q-card>
+      </div>
   </div>
-
+  </div>
 
 </template>
 
@@ -117,6 +157,34 @@
               {name: "del", subject:"art", total:100},
               {name: "sel", subject:"bio", total:20},
               {name: "sel", subject:"art", total:600}],
+          model:['General'],
+          options: [
+            {
+              label: 'Plumbing Services',
+              value: 'Plumbing Services',
+              icon: 'plumbing',
+            },
+            {
+              label: 'Mechanical Services',
+              value: 'Mechanical Services',
+              icon: 'electrical_services'
+            },
+            {
+              label: 'Painting Services',
+              value: 'Painting Services',
+              icon: 'format_paint'
+            },
+            {
+              label: 'Wood works',
+              value: 'Wood works',
+              icon: 'microwave'
+            },
+            {
+              label: 'Cooking Services',
+              value: 'Cooking Services',
+              icon: 'chair_alt'
+            },
+          ]
 
         }
       },
@@ -143,9 +211,12 @@
               });
             }
           console.log(arr);
-          }
-      }
-    }
+          },
+
+
+
+
+    }}
 </script>
 
 <style scoped>

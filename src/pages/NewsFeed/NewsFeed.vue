@@ -1,14 +1,14 @@
 <template>
     <div class="col-12" >
 
-      <div class="row justify-between q-ma-md">
+      <div class="row justify-between q-ma-md q-gutter-md">
       <div class="col-12 text-h6 ">Recent posts</div>
-        <div class=" col-8 ">
-          <div class="row ">
+        <div class=" col-lg-8 col-md-8 col-xs-12 col-sm-12 ">
+          <div class="row q-gutter-md ">
 <thumbnail-component :key="index" v-for="(item, index) in 9" class=" col-12 " ></thumbnail-component>
         </div></div>
 
-        <q-card  class="col-3 q-ma-md">
+        <q-card  class="col-lg-3 col-md-3 col-xs-12 col-sm-12 ">
           <q-card-section class="row ">
 
             <div class="text-h5  q-mb-xs">Featured news</div>

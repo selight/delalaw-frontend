@@ -1,3 +1,4 @@
+<script src="../../../../../Compressed/delalaw-master2/delalaw-master/src/index.js"></script>
 <template>
     <q-layout view="hHh LpR fff" class="">
       <q-header  elevated style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">
@@ -13,8 +14,19 @@
         <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
 
           <q-btn flat to="/newsfeed/"> Recent</q-btn><q-btn flat to="/newsfeed/sport"> Sport</q-btn>
-          <q-btn flat > Entertainment</q-btn><q-btn flat> Personal stories </q-btn>
-          <q-btn flat> Other</q-btn>
+          <q-btn flat > Entertainment</q-btn><q-btn flat class="mobile-hide"> Personal stories </q-btn>
+          <q-btn flat class="mobile-hide"> Other</q-btn> <q-btn flat icon="more_horiz">
+          <q-menu class="desktop-hide">
+            <q-list>
+              <q-item clickable v-close-popup>
+                <q-item-section>Personal Stories</q-item-section>
+              </q-item>
+              <q-item clickable v-close-popup>
+                <q-item-section>Other</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+            </q-btn>
 
         </div>
       </q-header>
@@ -81,9 +93,13 @@ style="font-size: xx-small"
     class="bg-accent text-grey-5  shadow-2 mobile-only "
   >
     <q-tab name="Home" icon="home" label="" >Home</q-tab>
-    <q-tab name="List" icon="mail" class="text-white"   style="font-size: small" >List your room</q-tab>
-    <q-tab name="search" icon="search" label="" >Find a room</q-tab>
+    <q-tab name="List" icon="mail" class="text-white"   style="font-size: small" v-if="$route.path.split('/')[1]==='roommate'"  >List your room</q-tab>
+    <q-tab name="search" icon="search" label="" v-if="$route.path.split('/')[1]==='roommate'" >Find a room</q-tab>
+
+    <q-tab name="List" icon="plumbing" class="text-white"  v-if="$route.path.split('/')[1]==='handyman'" style="font-size: small" >Register</q-tab>
+    <q-tab name="search" icon="search" v-if="$route.path.split('/')[1]==='handyman'" >Find a handyman</q-tab>
     <q-tab name="signIn" icon="person" label="" > SignIn</q-tab>
+
   </q-tabs>
 <!--</q-toolbar>-->
       </q-footer>

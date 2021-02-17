@@ -1,5 +1,5 @@
 <template>
-  <div class="row q-ma-md">
+  <div class="row ">
     <q-card >
       <q-card-section horizontal>
         <q-card-section class="q-pt-xs">
@@ -27,7 +27,7 @@
         <q-card-section class="col-5 flex flex-center">
           <q-img
             class="rounded-borders"
-            src="https://cdn.quasar.dev/img/parallax2.jpg"
+            src="~assets/nature.jpg"
           />
         </q-card-section>
       </q-card-section>
