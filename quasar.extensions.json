@@ -1,5 +1,1 @@
-{
-  "@quasar/apollo": {
-    "graphql_uri": "http://api.example.com"
-  }
-}
+{}

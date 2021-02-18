@@ -29,7 +29,7 @@ module.exports = function(/* ctx */) {
       // 'mdi-v5',
       'fontawesome-v5',
       // 'eva-icons',
-      // 'themify',
+      // 'themiquasar new plugin apollofy',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
