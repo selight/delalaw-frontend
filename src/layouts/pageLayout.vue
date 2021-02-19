@@ -27,8 +27,10 @@
               <q-item clickable v-close-popup>
                 <q-item-section>Other</q-item-section>
               </q-item>
+
             </q-list>
-          </q-menu>
+
+                </q-menu>
             </q-btn>
 </div>
         </div>

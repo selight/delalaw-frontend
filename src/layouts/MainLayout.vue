@@ -6,20 +6,27 @@
           <q-item clickable to="/"  class="text-h4 text-white">ደላላው</q-item>
         </q-toolbar-title>
 
-        <q-btn flat rounded label="Sign in" >
+        <q-btn flat rounded v-if="!isAuth" label="Sign in" v-on:click="dialog=true" >
+           </q-btn>
+        <q-btn flat rounded v-if="isAuth" icon="person"  >
 
-          <!-- <q-menu>
+ <q-menu>
           <q-list style="min-width: 100px">
             <q-item clickable v-close-popup>
               <q-item-section>New tab</q-item-section>
             </q-item>
             <q-separator />
-            <q-item clickable v-close-popup>
-              <q-item-section>Recent tabs</q-item-section>
+            <q-item clickable v-close-popup v-on:click="logOut()">
+              <q-item-section>Log out</q-item-section>
             </q-item>
           </q-list>
-          </q-menu> -->
-           </q-btn>
+          </q-menu>
+        </q-btn>
+
+        <q-dialog v-model="dialog">
+          <register-component v-on:loginClicked="register=false" v-on:LoggedIn="dialog=false" v-if="register"/>
+          <login-component v-on:registerClicked="register=true" v-on:registered="dialog=false" v-if="!register"/>
+        </q-dialog>
       </q-toolbar>
     </q-header>
     <q-page-container class="row">
@@ -36,13 +43,32 @@
 </template>
 
 <script>
+import LoginComponent from "components/loginComponent";
+import RegisterComponent from "components/registerComponent";
+import {mapGetters} from 'vuex';
+import {mapActions} from 'vuex';
 export default {
   name: "MainLayout",
-  components: {},
+  components: {RegisterComponent, LoginComponent},
   data() {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
+      dialog:false,
+      register:false
     };
+  },
+  computed:{
+    ...mapGetters({
+      isAuth:'Auth/isAuth'
+    })
+  },
+  methods:{
+    ...mapActions({
+      logoutUser:"Auth/logoutUser",
+    }),
+    async logOut(){
+      await this.logoutUser()
+    }
   }
 };
 </script>

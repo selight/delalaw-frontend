@@ -28,7 +28,7 @@ module.exports = function(/* ctx */) {
       // 'ionicons-v4',
       // 'mdi-v5',
       'fontawesome-v5',
-      // 'eva-icons',
+      'eva-icons',
       // 'themiquasar new plugin apollofy',
       // 'line-awesome',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
