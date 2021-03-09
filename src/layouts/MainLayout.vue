@@ -5,28 +5,28 @@
         <q-toolbar-title class="text-h4 ">
           <q-item clickable to="/"  class="text-h4 text-white">ደላላው</q-item>
         </q-toolbar-title>
+<authentication/>
+<!--        <q-btn flat rounded v-if="!isAuth" label="Sign in" to="/login" v-on:click="dialog=true" >-->
+<!--           </q-btn>-->
+<!--        <q-btn flat rounded v-if="isAuth" icon="person"  >-->
 
-        <q-btn flat rounded v-if="!isAuth" label="Sign in" v-on:click="dialog=true" >
-           </q-btn>
-        <q-btn flat rounded v-if="isAuth" icon="person"  >
+<!-- <q-menu>-->
+<!--          <q-list style="min-width: 100px">-->
+<!--            <q-item clickable v-close-popup>-->
+<!--              <q-item-section>New tab</q-item-section>-->
+<!--            </q-item>-->
+<!--            <q-separator />-->
+<!--            <q-item clickable v-close-popup v-on:click="logOut()">-->
+<!--              <q-item-section>Log out</q-item-section>-->
+<!--            </q-item>-->
+<!--          </q-list>-->
+<!--          </q-menu>-->
+<!--        </q-btn>-->
 
- <q-menu>
-          <q-list style="min-width: 100px">
-            <q-item clickable v-close-popup>
-              <q-item-section>New tab</q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item clickable v-close-popup v-on:click="logOut()">
-              <q-item-section>Log out</q-item-section>
-            </q-item>
-          </q-list>
-          </q-menu>
-        </q-btn>
-
-        <q-dialog v-model="dialog">
-          <register-component v-on:loginClicked="register=false" v-on:LoggedIn="dialog=false" v-if="register"/>
-          <login-component v-on:registerClicked="register=true" v-on:registered="dialog=false" v-if="!register"/>
-        </q-dialog>
+<!--        <q-dialog v-model="dialog">-->
+<!--          <register-component v-on:loginClicked="register=false" v-on:LoggedIn="dialog=false" v-if="register"/>-->
+<!--          <login-component v-on:registerClicked="register=true" v-on:registered="dialog=false" v-if="!register"/>-->
+<!--        </q-dialog>-->
       </q-toolbar>
     </q-header>
     <q-page-container class="row">
@@ -47,9 +47,10 @@ import LoginComponent from "components/loginComponent";
 import RegisterComponent from "components/registerComponent";
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
+import Authentication from "components/Authentication";
 export default {
   name: "MainLayout",
-  components: {RegisterComponent, LoginComponent},
+  components: {Authentication},
   data() {
     return {
       leftDrawerOpen: false,

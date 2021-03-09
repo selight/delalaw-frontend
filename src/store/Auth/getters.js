@@ -1,5 +1,5 @@
 export function isAuth (state) {
-return state.token
+return !!state.token
 
 }
 export function user (state) {
@@ -10,3 +10,4 @@ export function authStatus (state) {
   return state.authStatus
 
 }
+

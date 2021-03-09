@@ -29,7 +29,7 @@
 <!--    </q-dialog>-->
 
     <div class="row justify-evenly q-gutter-lg q-mb-lg q-mt-xs " >
-    <div class="col"></div>
+
       <dating-card-component v-for="(item, index) in 6" :key="index" class="col-lg-3 col-md-3 col-sm-5 col-xs-12"></dating-card-component>
     </div></div>
 </template>

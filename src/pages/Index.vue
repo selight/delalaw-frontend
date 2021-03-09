@@ -1,11 +1,11 @@
 <template>
   <div class="col-12 q-pa-sm">
     <div class="row justify-center">
-      <q-img alt="Quasar logo"
+      <q-img alt="Delalaw logo"
              class="col-12 q-mb-lg "
              contain
-             src="~assets/quasar-logo-full.svg"
-             style="max-width: 400px; height:200px;"
+             src="~assets/delalawl1.jpg"
+             style="max-width: 500px; height:300px;"
       />
       <!-- The question -->
       <div class="col-12 text-center" style="text-align:center;">
@@ -26,7 +26,7 @@
            <span class="q-mt-sm">News Feed</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style=" text-align:center;">
-          <q-btn color="primary" flat rounded to="/handyman">
+          <q-btn v-on:click="localStorage.setItem('hey','hyh');" color="primary" flat rounded to="/handyman">
             <q-img src="~assets/wrench.svg" style="max-width: 80px"></q-img>
 
             <span class="q-mt-sm">Handyman</span>

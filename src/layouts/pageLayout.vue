@@ -1,4 +1,9 @@
-<script src="../../../../../Compressed/delalaw-master2/delalaw-master/src/index.js"></script>
+<script>
+  import Authentication from "components/Authentication";
+  export default {
+    components: {Authentication}
+  }
+</script>
 <template>
     <q-layout view="hHh LpR fff" class="">
       <q-header  elevated style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">
@@ -8,8 +13,9 @@
           <q-btn flat class="no-padding no-margin" dense to="/"><div class="text-h4 no-margin">ደላላው</div></q-btn>
           <div class="text-h6 q-pt-md text-info">{{$route.path.split('/')[1].toUpperCase()}}</div>
           <q-space/>
-          <q-btn dense class="bg-secondary mobile-hide" v-if="$route.path.split('/')[1]==='roommate'">List your room</q-btn>
-          <q-btn flat class="mobile-hide">Sign in</q-btn>
+          <q-btn dense class="bg-secondary mobile-hide" v-if="$route.path.split('/')[1]==='roommate'" to="/roommate/listARoom">List your room</q-btn>
+          <q-btn dense class="bg-secondary mobile-hide" v-if="$route.path.split('/')[1]==='handyman'" to="/handyman/register">Register as a handyman</q-btn>
+          <authentication/>
         </q-toolbar>
         <div class="col-12 text-white justify-start q-gutter-md bg-accent   no-margin" style="" v-if="$route.path.split('/')[1]==='newsfeed'" >
 <div class="row justify-evenly">
@@ -81,7 +87,7 @@
         </q-scroll-area>
       </q-drawer>
 
-      <q-page-container class="row" >
+      <q-page-container class="row window-width" >
         <router-view />
       </q-page-container>
 
@@ -98,7 +104,7 @@ style="font-size: xx-small"
     class="bg-accent text-grey-5  shadow-2 mobile-only "
   >
     <q-tab name="Home" icon="home" label="" >Home</q-tab>
-    <q-tab name="List" icon="mail" class="text-white"   style="font-size: small" v-if="$route.path.split('/')[1]==='roommate'"  >List your room</q-tab>
+    <q-tab name="List" icon="mail" class="text-white"   style="font-size: small" v-if="$route.path.split('/')[1]==='roommate'" to="/roommate/listARoom" >List your room</q-tab>
     <q-tab name="search" icon="search" label="" v-if="$route.path.split('/')[1]==='roommate'" >Find a room</q-tab>
 
     <q-tab name="List" icon="plumbing" class="text-white"  v-if="$route.path.split('/')[1]==='handyman'" style="font-size: small" >Register</q-tab>
@@ -112,8 +118,11 @@ style="font-size: xx-small"
 </template>
 
 <script>
+    import Authentication from "components/Authentication";
+
     export default {
         name: "pageLayout",
+      components: {Authentication},
       data() {
         return {
           left:false,

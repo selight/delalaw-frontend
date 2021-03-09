@@ -1,6 +1,7 @@
 import gql from 'graphql-tag'
 export const REGISTER_USER= gql `mutation REGISTER_USER(
-    $email: String!,
+    $email: String,
+    $phonenumber:String!
     $username: String!,
     $password: String!,
     $firstName: String!,
@@ -8,6 +9,7 @@ export const REGISTER_USER= gql `mutation REGISTER_USER(
   ) {
     registerUser(
     newUser: {
+      phonenumber:$phonenumber,
       email: $email,
       username: $username,
       password: $password,

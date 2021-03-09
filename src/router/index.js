@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+// import store from '../store/index'
+import {mapActions} from 'vuex';
 import routes from './routes'
 
 Vue.use(VueRouter)
@@ -14,7 +15,7 @@ Vue.use(VueRouter)
  * with the Router instance.
  */
 
-export default function (/* { store, ssrContext } */) {
+export default function ( { store, ssrContext } ) {
   const Router = new VueRouter({
     scrollBehavior: () => ({ x: 0, y: 0 }),
     routes,
@@ -25,6 +26,18 @@ export default function (/* { store, ssrContext } */) {
     mode: process.env.VUE_ROUTER_MODE,
     base: process.env.VUE_ROUTER_BASE
   })
+Router.beforeEach((to, from, next) => {
+  const  isLoggedIn= store.getters['Auth/dialog'];
+  if(to.matched.some(rec => rec.meta.requiresAuth)){
+    if(!isLoggedIn){
+    store.dispatch('Auth/setDialog',true)
+      console.log(store.getters['Auth/dialog'])
 
+       // mutations.DIALOG_SHOW(store.state.Auth.dialog,true);
+    }
+  }else {
+    next();
+  }
+})
   return Router
 }
