@@ -65,9 +65,8 @@ import {mapActions} from 'vuex';
             registerUser:'Auth/registerUser'
     }),
        async register(){
+         // this.sendOtp();
           await  this.registerUser(this.user);
-          this.sendOtp();
-           await this.$router.push('/');
           },
         sendOtp(){
             let phoneNumber = this.user.phonenumber

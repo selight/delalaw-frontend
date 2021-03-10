@@ -30,10 +30,14 @@ Router.beforeEach((to, from, next) => {
   const  isLoggedIn= store.getters['Auth/dialog'];
   if(to.matched.some(rec => rec.meta.requiresAuth)){
     if(!isLoggedIn){
-    store.dispatch('Auth/setDialog',true)
-      console.log(store.getters['Auth/dialog'])
+      store.dispatch('Auth/logoutUser');
+      next({
+        path:'/signIn',
+        query:{
+          redirect: to.fullPath
+        }
+      })
 
-       // mutations.DIALOG_SHOW(store.state.Auth.dialog,true);
     }
   }else {
     next();

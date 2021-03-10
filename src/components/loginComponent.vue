@@ -55,7 +55,7 @@
         async loginUsers() {
           this.$emit('LoggedIn')
           await this.loginUser(this.user);
-          await this.$router.push('/')
+
 
         },
       }
