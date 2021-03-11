@@ -10,4 +10,7 @@ export function authStatus (state) {
   return state.authStatus
 
 }
+export function appVerifier (state) {
+  return state.appVerifier
 
+}

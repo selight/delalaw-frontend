@@ -212,18 +212,17 @@
     </q-stepper>
         <div class="q-mt-md col-4"><q-img  src="~assets/dating.svg"></q-img></div>
       </q-card>
-   <AuthDialog  v-bind:dialog-prop=dialogs />
+
     </div>
 </template>
 
 <script>
 
-    import {mapGetters} from "vuex";
-    import AuthDialog from "components/AuthDialog";
+
 
     export default {
         name: "postComponent",
-      components: {AuthDialog },
+
       props:{
         stepHeader:{
           type:Object,
@@ -248,15 +247,9 @@
           type:String,
         }
       },
-      computed:{
-        ...mapGetters({
-          isAuth:'Auth/isAuth'
-        })
-      },
       data() {
         return {
           step:1,
-          dialogs:false,
           register:false,
           options2:[
             'Ethiopian','Any'
@@ -301,14 +294,7 @@
 
         }},
       methods:{
-          finish(){
-            if (!this.isAuth){
-              this.dialogs=true
-            }
-            else {
-              //to profile
-            }
-          }
+
       }
 
     }

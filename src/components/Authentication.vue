@@ -17,7 +17,7 @@
       </q-list>
     </q-menu>
   </q-btn>
-<!--<AuthDialog v-bind:dialog-prop='dialog' />-->
+
 
   </div>
 </template>

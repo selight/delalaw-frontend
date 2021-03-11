@@ -10,14 +10,16 @@ const routes = [
   },
   {
     path: '/signIn',
-    component: () => import('components/AuthDialog.vue'),
-    // children: [
-    //   { path: '', component: () => import('components/AuthDialog.vue') }
-    // ]
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('components/AuthDialog.vue') },
+      { path: 'verify', component: () => import('components/verifyAccountComponent.vue') },
+
+    ]
   },
   {
     path: '/otp',
-    component: () => import('components/otp.vue'),
+    component: () => import('pages/Handyman/Register.vue'),
     // children: [
     //   { path: '', component: () => import('components/AuthDialog.vue') }
     // ]
@@ -29,7 +31,10 @@ const routes = [
       { path: '', component: () => import('pages/Roommate/Roommate.vue') },
       { path: 'listARoom', component: () => import('pages/Roommate/ListARoom.vue') },
       { path: ':id', component: () => import('pages/Roommate/RoomDetails.vue') }
-    ]
+    ],
+    meta:{
+      requiresAuth:false,
+    }
   },
   {
     path: '/newsfeed',
@@ -45,8 +50,12 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Handyman/Handyman.vue') },
       { path: 'register', component: () => import('pages/Handyman/Register.vue') }
-    ]
-  },  {
+    ],
+    meta:{
+      requiresAuth:false,
+    }
+  },
+  {
     path: '/enetewawek',
     component: () => import('layouts/pageLayout.vue'),
     children: [

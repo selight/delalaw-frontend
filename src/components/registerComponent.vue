@@ -17,16 +17,14 @@
         label="Password"
         lazy-rules
       />
-
+      <div id="recaptcha-container"></div>
       <div class="row q-gutter-md">
         <q-btn
           label="Register"
-          type="button"
+          id="sign-in-button"
           color="primary"
           v-on:click="register"
         />
-
-
         <q-btn
           flat
           v-on:click="$emit('loginClicked')"
@@ -54,9 +52,10 @@ import {mapActions} from 'vuex';
             password: "123456",
             firstName: "sila",
             lastName: "hitech",
-            email: "love@cometome.com",
-            phonenumber:"6505553434",
+            // email: "love@cometome.com",
+            phonenumber:"+16505553434",
           },
+          appVerifier : '',
           username:'',
           password:''
         }},
@@ -68,26 +67,50 @@ import {mapActions} from 'vuex';
          // this.sendOtp();
           await  this.registerUser(this.user);
           },
-        sendOtp(){
-            let phoneNumber = this.user.phonenumber
-            //
-            let appVerifier = this.appVerifier
-            //
-            firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
-              .then(function (confirmationResult) {
-                // SMS sent. Prompt user to type the code from the message, then sign the
-                // user in with confirmationResult.confirm(code).
-                window.confirmationResult = confirmationResult;
-                //
-                alert('SMS sent')
-              }).catch(function (error) {
-              // Error; SMS not sent
-              // ...
-              alert('Error ! SMS not sent')
-            });
-
-        },
+        // sendOtp(){
+        //
+        //     let phoneNumber = this.user.phonenumber;
+        //
+        //     //
+        //   let appVerifier = this.appVerifier
+        //   //
+        //   firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
+        //     .then(function (confirmationResult) {
+        //       // SMS sent. Prompt user to type the code from the message, then sign the
+        //       // user in with confirmationResult.confirm(code).
+        //       window.confirmationResult = confirmationResult;
+        //       //
+        //       alert('SMS sent')
+        //     }).catch(function (error) {
+        //     // Error; SMS not sent
+        //     // ...
+        //     alert('Error ! SMS not sent')
+        //   });
+        //
+        // },
+        // initReCaptcha(){
+        //   setTimeout(()=>{
+        //     let vm = this
+        //     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        //       'size': 'invisible',
+        //       'callback': function(response) {
+        //         // reCAPTCHA solved, allow signInWithPhoneNumber.
+        //         // ...
+        //       },
+        //       'expired-callback': function() {
+        //         // Response expired. Ask user to solve reCAPTCHA again.
+        //         // ...
+        //       }
+        //     });
+        //     //
+        //     this.appVerifier =  window.recaptchaVerifier
+        //   },1000)
+        // }
+      },
+      async created(){
+         await this.$store.dispatch('Auth/initReCaptcha');
       }
+
     }
 </script>
 

@@ -10,3 +10,6 @@ export function LOGOUT_USER ( state) {
   state.authStatus=false;
   state.token=null;
 }
+export function APP_VERIFIER(state,captcha) {
+state.appVerifier=captcha;
+}
