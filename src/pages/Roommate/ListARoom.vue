@@ -4,11 +4,7 @@
       <div class="col-12 q-mb-md">
 <post-component v-bind:forRoommate=true ></post-component>
       </div>
-
-
-
   <review-component class="col-6"  :reviews=reviews  >
-
   </review-component>
 
 

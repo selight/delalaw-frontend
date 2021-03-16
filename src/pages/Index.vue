@@ -50,13 +50,6 @@
             </div>
           </div>
 
-<!--        </div>-->
-
-<!--      </div>-->
-
-      <!-- News feed -->
-<!--      <div class="col-12 q-my-md q-pb-md ">-->
-<!--        <div class="row q-gutter-md q-ma-md justify-start">-->
           <div class="text-h2 text-secondary q-ma-md col-12">NewsFeed</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">

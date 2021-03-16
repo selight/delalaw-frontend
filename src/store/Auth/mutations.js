@@ -13,3 +13,9 @@ export function LOGOUT_USER ( state) {
 export function APP_VERIFIER(state,captcha) {
 state.appVerifier=captcha;
 }
+export function  SAVE_USER(state,payload) {
+  state.user=payload;
+}
+export function UPDATE_USER(state) {
+state.user.phoneVerified=true;
+}

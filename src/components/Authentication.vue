@@ -46,17 +46,12 @@
       methods:{
         ...mapActions({
           logoutUser:"Auth/logoutUser",
-          // dialog:"Auth/setDialog"
+
         }),
         async logOut(){
           await this.logoutUser()
         },
-        clicked(){
 
-          this.dialog=true;
-          console.log(this.dialog)
-
-        }
       }
     }
 </script>

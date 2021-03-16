@@ -43,8 +43,7 @@
 </template>
 
 <script>
-import LoginComponent from "components/loginComponent";
-import RegisterComponent from "components/registerComponent";
+
 import {mapGetters} from 'vuex';
 import {mapActions} from 'vuex';
 import Authentication from "components/Authentication";

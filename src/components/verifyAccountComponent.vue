@@ -60,6 +60,7 @@
 
 <script>
   import firebase from 'firebase'
+  import {mapActions,mapGetters} from "vuex";
     export default {
         name: "verifyAccountComponent",
       data() {
@@ -70,6 +71,14 @@
         }
         },
       methods:{
+        ...mapActions({
+          registerUser:'Auth/registerUser',
+          sendOtp:'Auth/sendOtp',
+          updateUser:'Auth/updateUser'
+        }),
+        ...mapGetters({
+          user:'Auth/user'
+        }),
         verifyOtp(){
           if( this.verifyNumber === 6){
             console.log(this.verifyNumber)
@@ -78,14 +87,23 @@
             let vm=this;
             let code = this.verifyNumber;
             window.confirmationResult.confirm(code).then(function (result) {
-              vm.step=2;
-              // User signed in successfully.
+console.log('here')
+               vm.$store.dispatch('Auth/updateUser').then(()=>{
 
-              let user = result.user;
+                vm.registerUser(vm.$store.getters["Auth/user"]);
+                vm.step=2
+               }
+               ).catch((e)=>{console.log(e)});
+
+              // User signed in successfully.
+              //update phoneverified
+
+
               // ...
               //route to set password !
 
             }).catch(function (error) {
+              console.log("error");
               vm.$q.notify(error);
               // User couldn't sign in (bad verification code?)
               // ...
@@ -94,7 +112,7 @@
         },
         resendNumber(){
           console.log(this.$store.getters["Auth/user"].phonenumber)
-          // this.$store.dispatch("Auth/sendOtp",this.$store.getters["Auth/user"].phonenumber);
+          // this.$store.dispatch("Auth/sendOtp",this.$store.getters["Auth/user"]);
         }
       },
       async created(){

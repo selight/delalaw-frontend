@@ -12,7 +12,7 @@ const routes = [
     path: '/signIn',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('components/AuthDialog.vue') },
+      { path: '', component: () => import('pages/SignIn.vue') },
       { path: 'verify', component: () => import('components/verifyAccountComponent.vue') },
 
     ]

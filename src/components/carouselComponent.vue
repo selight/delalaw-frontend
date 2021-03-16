@@ -7,12 +7,16 @@
       thumbnails
       infinite
       arrows
-      style="max-height:250px"
+      padding
+      control-type="push"
+      control-color="secondary"
       :hidden="hidden"
     >
-      <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-      <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-      <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
+      <q-carousel-slide  style="max-height:250px" v-for="(items,index) in rooms.featuredImage" :key="index" :name="index" :img-src="items.image" >
+        <q-img contain :src="items.image" placeholder-src="~assets/hut.png"></q-img>
+      </q-carousel-slide>
+<!--      <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />-->
+<!--      <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />-->
     </q-carousel>
 
     <q-card-section v-if="hidden===true" class="text-h6">
@@ -41,6 +45,14 @@ export default {
       required: false,
       default:false
     },
+    rooms:{
+      type:Object,
+      default:function () {
+          return {featuredImage:[]}
+        }
+      // required:true,
+    },
+
 
     caption: {
       type: String,

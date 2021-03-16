@@ -29,3 +29,46 @@ export const AUTHENTICATE_USER=gql`query LOGIN_USER (
     }
   }
 }`;
+//Posts
+export const GET_POSTS_WITH_PAGINATION = gql `
+query GET_POSTS_BY_LIMIT_AND_PAGE(
+    $page: Int,
+    $limit: Int,
+
+  ){
+  getPostsWithPagination(
+    page: $page,
+    limit: $limit,
+
+  ){
+    posts{
+      id
+      location
+      content
+      size
+      price
+      featuredImage{
+          image
+         size
+          }
+      author{
+        id
+        username
+        firstName
+        lastName
+      }
+    }
+    paginator{
+      next
+      prev
+      slNo
+      perPage
+      totalPosts
+      totalPages
+      currentPage
+      hasPrevPage
+      hasNextPage
+    }
+  }
+}
+`;
