@@ -17,7 +17,7 @@ import firebase from "firebase";
     let a=e.message.split(':')[1].split(':')[0].toString().trim();
 
     if(a.localeCompare("EmailPHONE")===0){
-      dispatch('sendOtp',(userData.phonenumber));
+      dispatch('sendOtp',(userData));
 
     }
     else if(a.localeCompare("PHONE")===0){
@@ -26,9 +26,9 @@ import firebase from "firebase";
     }
     }
 }
-export async function sendOtp({getters},userNumber){
+export async function sendOtp({commit,getters},user){
 
-     let phoneNumber = userNumber;
+     let phoneNumber = user.phonenumber;
 
     let appVerifier=getters.appVerifier;
 let vm=this
@@ -46,6 +46,7 @@ let vm=this
           position: 'center',
           message: 'Yeah. sms sent. Great Job!'
         });
+        commit('SAVE_USER',user)
         vm.$router.push('signIn/verify')
 
       }).catch(function (error) {
@@ -104,19 +105,23 @@ try{
   query:AUTHENTICATE_USER,
   variables:userData
 });
-  dispatch('setAuthUserData',loginUser);}
+
+  dispatch('setAuthUserData',loginUser);
+
+}
   catch (e) {
     console.log(e);
   }
 
 }
 export async function setAuthUserData({commit},payload){
+
   commit('LOGIN_USER',payload);
   commit('SET_TOKEN',payload);
   localStorage.setItem('apollo-token',payload.token.split(' ')[1]);
-  await this.$router.push('/');
+
 }
-export function  setDialog({commit},payload) {
-   commit('DIALOG_SHOW',payload);
+export async function  updateUser({commit}) {
+   commit('UPDATE_USER');
 
 }

@@ -49,12 +49,19 @@
           clientId:'358091240854-s6hnkvsr5ev4gopfu527p2c6ooletuue.apps.googleusercontent.com'
         }},
       methods: {
-        ...mapActions({
-          loginUser: "Auth/loginUser",
-        }),
+        // ...mapActions({
+        //   loginUser: "Auth/loginUser",
+        // }),
         async loginUsers() {
-          this.$emit('LoggedIn')
-          await this.loginUser(this.user);
+let vm=this;
+          await this.$store.dispatch('Auth/loginUser',this.user).then(()=>{
+vm.$emit('LoggedIn')
+            vm.$q.notify({
+              position:'center',
+              message:'You have successfully logged in',
+              color:'positive',
+            })
+          });
 
 
         },

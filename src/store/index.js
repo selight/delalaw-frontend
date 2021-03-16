@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Auth from "src/store/Auth";
-
+import Roommate from "src/store/Roommate";
+import Handyman from "src/store/Handyman";
 // import example from './Auth'
 
 Vue.use(Vuex)
@@ -18,7 +19,9 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      Auth
+      Auth,
+      Roommate,
+      Handyman
     },
 
     // enable strict mode (adds overhead!)

@@ -7,8 +7,7 @@
       </div>
       <div class=" col-md-8 col-lg-8 col-sm-8 col-xs-12 q-mt-lg text-h6 text-center text-accent  text-weight-light" >
         Easily,Smartly and somethingly</div>
-<!--      <card-component class="col-5"/>-->
-<!--      <card-component class="col-5" v-bind:hidden="true"/>-->
+
 
     </div>
 
@@ -30,10 +29,6 @@
         </div>
       </q-img>
 
-<!--      <card-component  src="keyboard.svg" class="col-2" note="Type in your location" v-bind:hidden="true"> </card-component>-->
-<!--    <card-component src="Rent.svg" class="col-2 q-mt-sm" note="Click on the rent button" v-bind:hidden="true"/>-->
-<!--    <card-component src="communicate.svg" class="col-2" note="Communicate with the owner" v-bind:hidden="true"/>-->
-<!--      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3231.2068720612087!2d-78.45236865!3d35.917436083!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ac4fb5f20dd3c3%3A0x6e08b61d485085cc!2sNew%20Bethel%20Baptist%20Church!5e0!3m2!1sen!2set!4v1612381357884!5m2!1sen!2set" width="500" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>-->
     </div>
 
         <!--    filters-->
@@ -77,16 +72,14 @@
 
     <div class="row q-gutter-lg q-mt-lg justify-evenly" v-if="hidden">
 
-      <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in 9"/>
-
-
+      <carousel-component :key="index" :rooms="item" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in POSTS"/>
     </div>
     <div></div>
   </div>
 </template>
 
 <script>
-  import CardComponent from "components/cardComponent";
+
   import CarouselComponent from "components/carouselComponent";
 
   export default {
@@ -94,6 +87,8 @@
     components: {CarouselComponent},
     data() {
       return {
+        POSTS:[],
+
         model: 'One Bedroom',
         nationality:'Any',
         red:"justify-evenly q-ma-md",
@@ -114,10 +109,11 @@
       }
     },
     created() {
-
-        this.$refs.searchField.focus();
-
+      this.$store.dispatch('Roommate/getPostsWithPagination').then(result =>{
+        this.POSTS=result;
+      })
     }
+
   }
 </script>
 

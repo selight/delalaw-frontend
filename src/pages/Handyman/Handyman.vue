@@ -1,5 +1,4 @@
 <template>
-<!--  <q-btn v-on:click="mel()">go</q-btn>-->
   <div class="col-12">
   <div class="row justify-between q-ma-sm   ">
         <!--    Top Nav bar-->
@@ -97,23 +96,22 @@
 
     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 q-mt-md ">
       <div class="row q-gutter-md">
-  <q-card v-for="(item, index) in 4" :key="index" class=" flat bordered">
+  <q-card v-for="(item, index) in posts" :key="index" class=" flat bordered">
     <q-card-section horizontal class="row " >
       <q-card-section class=" text-white bg-secondary col-5" style="border-right: solid 1px" >
         <div class="column items-center q-gutter-sm">
-        <div class="col-12 text-center" >Selam</div>
+        <div class="col-12 text-center" >{{item.author.username}}</div>
         <q-avatar size="120px"  class="bg-white  q-ma-xs text-center">
           <q-img contain src="~/assets/dating.svg"/>
         </q-avatar>
-        <div class=" col-12 text-center">Plumbing,Home service</div></div>
+        <div class=" col-12 text-center">{{item.services[0]}},{{item.services[1]}}</div></div>
       </q-card-section>
 
       <q-card-section class="col-7" >
-        <div class="text-subtitle2">Job title: <span class="text-secondary  text-subtitle2">Plumber</span></div>
-        <div class="text-subtitle2">Work Experience: <span class="text-secondary">3 years in the plumbing business</span></div>
-        <div class="text-subtitle2">Description: <span class="text-secondary">I did this and i did that, look at this
-        and look at that.</span></div>
-        <div class="text-subtitle2">Location: <span class="text-secondary">Los Angeles</span></div>
+        <div class="text-subtitle2">Services: <span class="text-secondary  text-subtitle2">{{item.services[0]}}</span></div>
+        <div class="text-subtitle2">Work Experience: <span class="text-secondary">{{item.workExperience}}</span></div>
+        <div class="text-subtitle2">Description: <span class="text-secondary">{{item.description}}</span></div>
+        <div class="text-subtitle2">Location: <span class="text-secondary">{{item.location}}</span></div>
 
 <div class="row justify-end">
           <q-btn   class="q-ma-sm absolute-bottom-right">contact</q-btn>
@@ -184,39 +182,17 @@
               value: 'Cooking Services',
               icon: 'chair_alt'
             },
-          ]
+          ],
+          posts:[{location:'',description:'',rate:'',services:[],workExperience: '',author:{username:''}}],
 
           }
       },
-      methods:{
-          mel(){
-            let temp = "";
-            let arr=[];
-            for (let i = 0; i <this.hey.length ; i++) {
-              temp = this.hey[i].name;
-              let obj={};
-              if(obj !== {}){
-                arr.push(obj)
-              }
-              this.hey.forEach(student => {
-                if (student.name===temp){
-                  obj.name=temp;
-                  obj[student.subject]=student.total
-                  this.hey=this.hey.filter(function (item) {
-                    return item !== student
-                    }
-                  )
-                }
-
-              });
-            }
-          console.log(arr);
-          },
-
-
-
-
-    }}
+      created() {
+        this.$store.dispatch('Handyman/getPostsWithPagination').then(result =>{
+          this.posts=result;
+        })
+      }
+    }
 </script>
 
 <style scoped>

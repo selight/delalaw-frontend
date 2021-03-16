@@ -1,12 +1,12 @@
 <template>
-<div class=" fullscreen flex flex-center bg-black  " >
+<!--<div class=" fullscreen flex flex-center bg-black  " >-->
 
   <q-card >
     <register-component v-on:loginClicked="register=false"  v-if="register"/>
-    <login-component v-on:registerClicked="register=true"  v-if="!register"/>
+    <login-component  v-on:registerClicked="register=true"  v-if="!register"/>
   </q-card>
 
-</div>
+<!--</div>-->
 </template>
 
 <script>
