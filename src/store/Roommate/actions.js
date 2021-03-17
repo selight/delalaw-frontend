@@ -5,9 +5,11 @@ export async function createNewPost({commit},postData){
   console.log("hey",postData)
 try {let data =await apolloClient.mutate({
   mutation:CREATE_NEW_POST,
-  variables:postData
+  variables: postData
 })
+
  return data
+
 }
 catch (e) {
   this.$q.notify({message:e})
@@ -23,10 +25,10 @@ export async function getPostsWithPagination({commit}){
 }
 export async function uploadImage({commit},Images) {
 console.log('here');
-let {data:{imageUploader}} = await  apolloClient.mutate({
+let {data:{singleUploadStream}} = await  apolloClient.mutate({
     mutation:UPLOAD_IMAGE,
     variables: {file:Images}
   })
 
-  return imageUploader;
+  return singleUploadStream;
 }

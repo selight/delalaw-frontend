@@ -257,6 +257,13 @@
         <register-component  v-on:loginClicked="register=false"  v-if="register"/>
         <login-component v-on:LoggedIn="dialog=false" v-on:registerClicked="register=true"  v-if="!register"/>
       </q-dialog>
+      <q-dialog v-model="dialog2">
+        <q-card>
+        <div>Are you sure about your post</div>
+        <q-btn v-on:click="post()" >Go</q-btn>
+        <q-btn v-close-popup>close</q-btn>
+        </q-card>
+      </q-dialog>
     </div>
 
 </template>
@@ -354,6 +361,7 @@
           url:'',
           dialog:false,
           Auth:this.$store.getters['Auth/isAuth'],
+          dialog2:false,
 
 
         }},
@@ -370,23 +378,27 @@
           this.images.push(files);
           return this.url;
         },
-        async  finish(){
+         async finish(){
          let vm=this;
           //upload the files if there are any and save the post and the roommate information
-            if (this.images!=null){
+            if (this.images!=null) {
         this.images.forEach(image =>{
           vm.$store.dispatch('Roommate/uploadImage',image[0]).then(result =>{
              let images= {image:result,size:'600*600'}
             vm.roommate.featuredImage.push(images);
-
+             vm.dialog2=true;
           });
         });
             }
 
-      await this.$store.dispatch('Roommate/createNewPost',this.roommate);
 
 
       },
+        async post(){
+          console.log(this.roommate)
+          await this.$store.dispatch('Roommate/createNewPost',this.roommate);
+
+        },
         async createHandyman(){
           if(this.$store.getters['Auth/isAuth']){
           this.handymanServices.forEach(service=>{

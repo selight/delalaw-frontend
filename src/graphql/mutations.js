@@ -59,7 +59,7 @@ mutation NEW_POST(
 `;
 //UPLOAD IMAGE
 export const UPLOAD_IMAGE=gql`mutation UPLOAD_IMAGE($file: Upload!) {
-  imageUploader(file: $file)
+  singleUploadStream(file: $file)
 }`;
 //Handyman new post
 export const  HANDYMAN_NEW_POST= gql `
