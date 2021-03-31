@@ -93,16 +93,36 @@
     </q-item>
   </q-list>
 </div>
-
+<!--Posts-->
     <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12 q-mt-md ">
-      <div class="row q-gutter-md">
+      <div class="row   q-gutter-md">
+        <div v-if="posts.length===0" class=" col-12">
+          <div class="row q-gutter-md">
+        <q-card  v-for="(item,index) in 9" style="min-width: 500px"  :key="index">
+          <q-card-section horizontal class="row q-mt-md q-mr-xs" >
+<div class="col-5 text-center">
+  <div class="row justify-center">
+          <q-skeleton size="120px" type="QAvatar" />
+  </div>
+</div>
+<div class="col-7">
+  <q-skeleton height="50px" v-for="(item,index) in 3" :key="index" type="text" />
+</div>
+        </q-card-section>
+          <div class="row justify-end" >
+            <q-skeleton type="QBtn"  class="q-ma-sm "></q-skeleton>
+          </div>
+
+        </q-card>
+        </div>
+        </div>
   <q-card v-for="(item, index) in posts" :key="index" class=" flat bordered">
     <q-card-section horizontal class="row " >
       <q-card-section class=" text-white bg-secondary col-5" style="border-right: solid 1px" >
         <div class="column items-center q-gutter-sm">
         <div class="col-12 text-center" >{{item.author.username}}</div>
         <q-avatar size="120px"  class="bg-white  q-ma-xs text-center">
-          <q-img contain src="~/assets/dating.svg"/>
+          <q-img contain placeholder-src="~assets/dating.svg" :src="item.author.profilePicture"/>
         </q-avatar>
         <div class=" col-12 text-center">{{item.services[0]}},{{item.services[1]}}</div></div>
       </q-card-section>
@@ -120,6 +140,9 @@
     </q-card-section>
   </q-card>
     </div></div>
+
+
+    <!--        Reviews-->
       <div class="col-lg-4 col-md-4 col-xs-12 q-mt-md ">
     <q-card >
       <div class="text-h6 q-ma-sm">Reviews</div>
@@ -128,7 +151,8 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
       labore et dolore magna aliqua.
     </div>
-  </q-card-section></q-card></q-card>
+  </q-card-section></q-card>
+    </q-card>
       </div>
   </div>
   </div>
@@ -142,19 +166,7 @@
       data () {
         return {
           lorem: 'Lorem ipsum dolor, sit amet Lorem ipsum dolor, sit amet consec Lorem ipsum dolor, sit amet consec Lorem ipsum dolor, sit amet consec consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
-            hey:[
-              {name: "sel", subject:"chem", total:70},
-              {name: "mel", subject:"bio", total:40},
-              {name: "sel", subject:"geo", total:30},
-              {name: "mel", subject:"art", total:100},
-              {name: "del", subject:"bio", total:40},
-              {name: "del", subject:"chem", total:80},
-              {name: "mel", subject:"chem", total:80},
-              {name: "mel", subject:"geo", total:50},
-              {name: "del", subject:"geo", total:50},
-              {name: "del", subject:"art", total:100},
-              {name: "sel", subject:"bio", total:20},
-              {name: "sel", subject:"art", total:600}],
+
           model:['General'],
           options: [
             {
@@ -183,14 +195,14 @@
               icon: 'chair_alt'
             },
           ],
-          posts:[{location:'',description:'',rate:'',services:[],workExperience: '',author:{username:''}}],
+          posts:[{location:'',description:'',rate:'',services:[],workExperience: '',author:{username:'',profilePicture:''}}],
 
           }
       },
       created() {
         this.$store.dispatch('Handyman/getPostsWithPagination').then(result =>{
           this.posts=result;
-        })
+        }).catch(()=>this.posts=[])
       }
     }
 </script>

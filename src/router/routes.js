@@ -18,11 +18,14 @@ const routes = [
     ]
   },
   {
-    path: '/otp',
-    component: () => import('pages/Handyman/Register.vue'),
-    // children: [
-    //   { path: '', component: () => import('components/AuthDialog.vue') }
-    // ]
+    path: '/profile',
+    component: () => import('layouts/pageLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/Profile.vue') }
+    ],
+    meta:{
+      requiresAuth:false,
+    }
   },
   {
     path: '/roommate',

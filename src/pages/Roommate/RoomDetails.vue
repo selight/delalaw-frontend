@@ -4,7 +4,10 @@
 
 <script>
     export default {
-        name: "RoomDetails"
+        name: "RoomDetails",
+      created() {
+          this.$store.dispatch("Roommate/getPostById",this.$route.params.id)
+      }
     }
 </script>
 

@@ -71,8 +71,20 @@
     </div>
 
     <div class="row q-gutter-lg q-mt-lg justify-evenly" v-if="hidden">
+    <div v-if="POSTS.length===0" class="col-12">
+      <div class="row q-gutter-lg justify-evenly">
+      <q-card  v-for="(item,index) in 9" class="col-md-3 col-sm-5 col-xs-12 " :key="index">
 
-      <carousel-component :key="index" :rooms="item" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in POSTS"/>
+        <q-skeleton height="300px" square />
+
+        <q-card-actions align="right" class="q-gutter-md">
+
+          <q-skeleton type="QBtn" />
+        </q-card-actions>
+      </q-card>
+      </div>
+      </div>
+      <carousel-component  v-on:rent="$router.push('roommate/'+item.id)" :key="index" :rooms="item" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in POSTS"/>
     </div>
     <div></div>
   </div>

@@ -1,4 +1,4 @@
-import {REGISTER_USER,AUTHENTICATED_USER,AUTHENTICATE_USER} from "src/graphql";
+import {REGISTER_USER,AUTHENTICATED_USER,AUTHENTICATE_USER,UPDATE_USER} from "src/graphql";
 import {apolloClient} from "src/vue-apollo";
 import { Notify } from 'quasar'
 import firebase from "firebase";
@@ -125,3 +125,16 @@ export async function  updateUser({commit}) {
    commit('UPDATE_USER');
 
 }
+export async function editUser ({commit,getters},userData) {
+
+  try{
+    let {data:{updateUser}} = await apolloClient.mutate({
+      mutation:UPDATE_USER,
+      variables: {id:getters.user.id,profilePicture:userData}
+    })
+    commit('LOGIN_USER',updateUser);
+
+  }
+  catch (e) {
+    console.log(e)
+  }}

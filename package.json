@@ -27,6 +27,7 @@
     "node-fetch": "^2.6.1",
     "quasar": "^1.0.0",
     "vue-apollo": "^3.0.7",
+    "vue-avatar-cropper": "^1.0.9",
     "vue-google-signin-button-directive": "^1.0.3",
     "vue-i18n": "^8.0.0"
   },

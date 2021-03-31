@@ -13,10 +13,8 @@
       :hidden="hidden"
     >
       <q-carousel-slide  style="max-height:250px" v-for="(items,index) in rooms.featuredImage" :key="index" :name="index" :img-src="items.image" >
-        <q-img contain :src="items.image" placeholder-src="~assets/hut.png"></q-img>
+<!--        <q-img contain :src="items.image" placeholder-src="~assets/hut.png"></q-img>-->
       </q-carousel-slide>
-<!--      <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />-->
-<!--      <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />-->
     </q-carousel>
 
     <q-card-section v-if="hidden===true" class="text-h6">
@@ -28,9 +26,9 @@
          error dignissimos praesentium libero ab nemo.<br/>
          <q-btn class="bg-primary text-white q-mr-lg">read more</q-btn>
       </q-card-section>
-      <q-card-section :hidden="hidden" >
+      <q-card-section :hidden="rentHidden" >
         <div class="row text-secondary justify-between "> <div class="col-6">Addis ababa, Ethiopia</div>
-         <q-btn class="col-3 bg-primary text-white" >rent</q-btn></div>
+         <q-btn class="col-3 bg-primary text-white" v-on:click="$emit('rent')" >rent</q-btn></div>
       </q-card-section>
     </q-card>
 
@@ -41,6 +39,11 @@ export default {
   name: 'CarouselComponent',
   props: {
     hidden: {
+      type: Boolean,
+      required: false,
+      default:false
+    },
+    rentHidden:{
       type: Boolean,
       required: false,
       default:false

@@ -29,6 +29,44 @@ export const REGISTER_USER= gql `mutation REGISTER_USER(
     }
   }
 }`;
+export const UPDATE_USER = gql `mutation UPDATE_USER_BY_ID(
+  $id: ID!, $profilePicture:String,
+  $age:String,$username: String,
+  $firstName: String,
+  $lastName: String,
+$gender: String,
+  $phonenumber: String,
+  $roommateInfo:RoommateInput) {
+  updateUser(
+    id: $id
+    updatedUser: {
+      username:$username,
+      firstName:$firstName,
+      lastName:$lastName,
+age:$age,
+      profilePicture:$profilePicture,
+      gender: $gender,
+      phonenumber: $phonenumber,
+      roommateInfo:$roommateInfo
+    }
+  ) {
+    id
+    username
+    firstName
+    email
+    lastName
+    age
+    gender
+    profilePicture
+    phonenumber
+    roommateInfo{
+      age
+      gender
+      nationality
+    }
+  }
+}
+`;
 //POSTS
 export const CREATE_NEW_POST = gql `
 mutation NEW_POST(
@@ -86,43 +124,4 @@ mutation NEW_POST(
     }
 }
 `;
-export const HANDYMAN_GET_ALL_POSTS_WITH_PAGINATION = gql `
-query GET_POSTS_BY_LIMIT_AND_PAGE(
-    $page: Int,
-    $limit: Int,
 
-  ){
-  getHandymanPostsWithPagination(
-    page: $page,
-    limit: $limit,
-
-  ){
-    posts{
-      id
-      location
-         description
-              rate
-              workExperience
-              services
-      author{
-        id
-        username
-        firstName
-        lastName
-      }
-    }
-    paginator{
-      next
-      prev
-      slNo
-      perPage
-      totalPosts
-      totalPages
-      currentPage
-      hasPrevPage
-      hasNextPage
-    }
-  }
-}
-
-`;

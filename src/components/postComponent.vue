@@ -203,6 +203,7 @@
         <q-uploader
           accept=".jpg, image/*"
           :factory="FactoryFn"
+          ref="uploader"
           auto-upload
           multiple
           @rejected="onRejected"
@@ -375,28 +376,50 @@
         },
 
         FactoryFn(files){
-          this.images.push(files);
+          console.log(files[0])
+          const reader = new FileReader();
+          reader.onload =(e) => {
+            let image = e.target.result
+            this.images.push(image)
+          }
+            reader.readAsDataURL(files[0]);
+console.log(this.images)
+
+          // this.images.push(files);
           return this.url;
         },
          async finish(){
+
+           if(this.$store.getters['Auth/isAuth']){
          let vm=this;
           //upload the files if there are any and save the post and the roommate information
             if (this.images!=null) {
-        this.images.forEach(image =>{
-          vm.$store.dispatch('Roommate/uploadImage',image[0]).then(result =>{
-             let images= {image:result,size:'600*600'}
+       for (const image of this.images) {
+          await vm.$store.dispatch('Roommate/uploadImage',image).then(result =>{
+            if(result !== '' || result !== null){
+            let images= {image:result,size:'600*600'}
             vm.roommate.featuredImage.push(images);
-             vm.dialog2=true;
-          });
-        });
             }
-
+          });
+        }
+            }
+           await this.$store.dispatch('Roommate/createNewPost',this.roommate).then(
+             ()=>{
+               vm.$q.notify({
+                 message:'Congrats you have created a post',
+                 color:'positive'
+               })
+             }
+           );}
+           else{
+             this.dialog=true;
+           }
 
 
       },
         async post(){
           console.log(this.roommate)
-          await this.$store.dispatch('Roommate/createNewPost',this.roommate);
+
 
         },
         async createHandyman(){
@@ -405,7 +428,14 @@
             this.handyman.services.push(service.value);
           })
 
-         await this.$store.dispatch('Handyman/createNewHandyman',this.handyman)
+         await this.$store.dispatch('Handyman/createNewHandyman',this.handyman).then(
+           ()=>{
+             this.$q.notify({
+               message:'Congrats you have created a post',
+               color:'positive'
+             })
+           }
+         );
         }
         else{
          this.dialog=true;
