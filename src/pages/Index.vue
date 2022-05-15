@@ -1,15 +1,16 @@
 <template>
   <div class="col-12 q-pa-sm">
     <div class="row justify-center">
+<!--      first section-->
       <q-img alt="Delalaw logo"
              class="col-12 q-mb-lg "
              contain
              src="~assets/delalawl1.jpg"
-             style="max-width: 500px; height:300px;"
+             style="max-width: 500px; height:250px;"
       />
       <!-- The question -->
       <div class="col-12 text-center" style="text-align:center;">
-        <div class="q-ml-lg text-secondary text-h1 desktop-only mobile-hide">What are you looking for?</div>
+        <div class="q-ml-lg text-secondary text-h2 desktop-only mobile-hide">What are you looking for?</div>
         <div class="text-secondary text-h3 desktop-hide">What are you looking for?</div>
       </div>
       <!-- Main buttons -->
@@ -26,7 +27,7 @@
            <span class="q-mt-sm">News Feed</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style=" text-align:center;">
-          <q-btn v-on:click="localStorage.setItem('hey','hyh');" color="primary" flat rounded to="/handyman">
+          <q-btn v-on:click="localStorage.setItem('hey','hyh')" color="primary" flat rounded to="/handyman">
             <q-img src="~assets/wrench.svg" style="max-width: 80px"></q-img>
 
             <span class="q-mt-sm">Handyman</span>
@@ -39,17 +40,17 @@
 
         </div>
       </div>
-      <!-- Roommate -->
+        <!-- Roommate -->
 <!--      <div class="col-12 q-my-md q-pb-md ">-->
 <!--        <div class="row q-gutter-md q-ma-lg-md q-ma-md-md justify-start">-->
           <div class="text-h2 text-secondary q-ma-md col-12">Roommate</div>
           <div class="col-12">
             <div class="row q-gutter-md  justify-evenly">
-              <carousel-component :key="index" class="col-md-3 col-sm-5 col-xs-12 " v-for="(item, index) in 3"/>
+              <carousel-component class="col-md-3 col-sm-5 col-xs-12 " v-on:rent="this.$router.push('roommate/'+item.id)" :key="index" :rooms="item" v-for="(item, index) in POSTS"/>
               <q-btn class="q-ml-lg text-primary" to="/roommate" icon="arrow_forward_ios" rounded size="lg">See more</q-btn>
             </div>
           </div>
-
+            <!--NewsFeed-->
           <div class="text-h2 text-secondary q-ma-md col-12">NewsFeed</div>
           <div class="col-12">
             <div class="row q-gutter-md justify-evenly">
@@ -125,10 +126,15 @@
           paddingTop: "3px",
           paddingBottom: "3px",
         },
+        POSTS:[]
       };
     },
-    methods:{
+    created() {
+      this.$store.dispatch('Roommate/getPostsWithPagination',3).then(result =>{
 
+        this.POSTS=result;
+
+      })
     }
   };
 </script>

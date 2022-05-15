@@ -12,7 +12,7 @@
       control-color="secondary"
       :hidden="hidden"
     >
-      <q-carousel-slide  style="max-height:250px" v-for="(items,index) in rooms.featuredImage" :key="index" :name="index" :img-src="items.image" >
+      <q-carousel-slide  style="max-height:250px" v-for="(items,index) in rooms.featuredImage" :key="index" :name="index" spinner-color="primary" :img-src="items.image" >
 <!--        <q-img contain :src="items.image" placeholder-src="~assets/hut.png"></q-img>-->
       </q-carousel-slide>
     </q-carousel>

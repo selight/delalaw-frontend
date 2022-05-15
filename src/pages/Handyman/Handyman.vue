@@ -120,7 +120,7 @@
     <q-card-section horizontal class="row " >
       <q-card-section class=" text-white bg-secondary col-5" style="border-right: solid 1px" >
         <div class="column items-center q-gutter-sm">
-        <div class="col-12 text-center" >{{item.author.username}}</div>
+        <div class="col-12 text-center" >{{item.author.firstName}}</div>
         <q-avatar size="120px"  class="bg-white  q-ma-xs text-center">
           <q-img contain placeholder-src="~assets/dating.svg" :src="item.author.profilePicture"/>
         </q-avatar>
@@ -195,7 +195,7 @@
               icon: 'chair_alt'
             },
           ],
-          posts:[{location:'',description:'',rate:'',services:[],workExperience: '',author:{username:'',profilePicture:''}}],
+          posts:[{location:'',description:'',rate:'',services:[],workExperience: '',author:{firstName:'',profilePicture:''}}],
 
           }
       },

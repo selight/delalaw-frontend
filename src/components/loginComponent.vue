@@ -3,7 +3,7 @@
   <q-form class="q-ma-md q-gutter-md">
   <social-component></social-component>
     <q-separator/>
-    <q-input filled v-model="user.username" label="Username" lazy-rules />
+    <q-input filled v-model="user.phoneNumber" label="Phone Number" lazy-rules />
 
     <q-input
       type="password"
@@ -34,8 +34,6 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex';
-  import GoogleSignInButton from 'vue-google-signin-button-directive';
   import socialComponent from "components/socialComponent";
     export default {
         name: "loginComponent",
@@ -43,24 +41,24 @@
       data() {
         return {
           user:{
-            username: "sila",
+            phoneNumber: "sila",
             password: "123456"
           },
           clientId:'358091240854-s6hnkvsr5ev4gopfu527p2c6ooletuue.apps.googleusercontent.com'
         }},
       methods: {
-        // ...mapActions({
-        //   loginUser: "Auth/loginUser",
-        // }),
         async loginUsers() {
 let vm=this;
-          await this.$store.dispatch('Auth/loginUser',this.user).then(()=>{
-vm.$emit('LoggedIn')
+          await this.$store.dispatch('Auth/loginUser',this.user).then(async (user)=>{
+            if(user!==undefined){
+            vm.$emit('LoggedIn')
             vm.$q.notify({
               position:'center',
               message:'You have successfully logged in',
               color:'positive',
             })
+              await this.$router.push('/')
+            }
           });
 
 

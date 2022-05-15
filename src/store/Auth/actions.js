@@ -1,9 +1,31 @@
-import {REGISTER_USER,AUTHENTICATED_USER,AUTHENTICATE_USER,UPDATE_USER} from "src/graphql";
+import {REGISTER_USER,AUTHENTICATED_USER,AUTHENTICATE_USER,UPDATE_USER, GET_GOOGLE_AUTH_LINK,LOGIN_WITH_GOOGLE} from "src/graphql";
 import {apolloClient} from "src/vue-apollo";
 import { Notify } from 'quasar'
 import firebase from "firebase";
 
- export async function registerUser ({dispatch},userData) {
+export async function getGoogleAuthLink(){
+  try {
+    let {data:{getGoogleAuthLink}} = await apolloClient.query({
+      query: GET_GOOGLE_AUTH_LINK,
+    })
+    return getGoogleAuthLink;
+  }
+  catch (e) {
+    console.log(e)
+  }
+}
+export async  function loginWithGoogle({dispatch},code) {
+  try {
+    let {data:{signInWithGoogle}} = await apolloClient.mutate({
+      mutation: LOGIN_WITH_GOOGLE,
+      variables: {code:code}
+    });
+    dispatch('setAuthUserData',signInWithGoogle);
+  }catch (e) {
+    console.log(e)
+  }
+  }
+export async function registerUser ({dispatch},userData) {
   try{
    let {data:{registerUser}} = await apolloClient.mutate({
      mutation:REGISTER_USER,
@@ -14,7 +36,12 @@ import firebase from "firebase";
   }
   catch (e) {
 
-    let a=e.message.split(':')[1].split(':')[0].toString().trim();
+    let a=e.message.split(':')[1]//.split(':')[0].toString().trim();
+    Notify.create({
+      position:'center',
+      message:a,
+      color:'negative',
+    })
 
     if(a.localeCompare("EmailPHONE")===0){
       dispatch('sendOtp',(userData));
@@ -28,7 +55,7 @@ import firebase from "firebase";
 }
 export async function sendOtp({commit,getters},user){
 
-     let phoneNumber = user.phonenumber;
+     let phoneNumber = user.phoneNumber;
 
     let appVerifier=getters.appVerifier;
 let vm=this
@@ -92,6 +119,7 @@ export async function getAuthUser ({commit,dispatch}) {
      commit("LOGIN_USER", {user: authUser})
    }
    catch (e) {
+     console.log('from auth',e);
      dispatch('logoutUser')
    }
 }
@@ -110,12 +138,18 @@ try{
 
 }
   catch (e) {
-    console.log(e);
+    let a=e.message.split(':')[1]
+    Notify.create({
+      position:'center',
+      message:a,
+      color:'negative',
+    })
+
   }
 
 }
 export async function setAuthUserData({commit},payload){
-
+console.log("payload from set Auth User Data",payload);
   commit('LOGIN_USER',payload);
   commit('SET_TOKEN',payload);
   localStorage.setItem('apollo-token',payload.token.split(' ')[1]);

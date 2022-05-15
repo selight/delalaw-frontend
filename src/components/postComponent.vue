@@ -419,8 +419,6 @@ console.log(this.images)
       },
         async post(){
           console.log(this.roommate)
-
-
         },
         async createHandyman(){
           if(this.$store.getters['Auth/isAuth']){

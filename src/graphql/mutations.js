@@ -1,64 +1,69 @@
 import gql from 'graphql-tag'
-export const REGISTER_USER= gql `mutation REGISTER_USER(
-    $email: String,
-    $phonenumber:String!
-    $username: String!,
-    $password: String!,
-    $firstName: String!,
-    $lastName: String!,
-     $phoneVerified:Boolean
-  ) {
-    registerUser(
-    newUser: {
-      phonenumber:$phonenumber,
-      email: $email,
-      username: $username,
-      password: $password,
-      lastName: $lastName,
-      firstName: $firstName,
-      phoneVerified: $phoneVerified,
+export const LOGIN_WITH_GOOGLE = gql `
+  mutation loginWithGoogle($code:String!){
+    signInWithGoogle(code:$code){
+      token
+      user{
+        id
+        email
+        firstName
+        lastName
+      }
     }
-  ) {
+  }
+`;
+export const REGISTER_USER= gql `mutation REGISTER_USER(
+  $email: String!,
+  $password: String!,
+  $firstName: String!,
+  $lastName: String!,
+  $phoneNumber:String!
+) {
+  registerUser(
+  newUser: {
+    email: $email,
+    password: $password,
+    lastName: $lastName,
+    firstName: $firstName,
+    phoneNumber:$phoneNumber
+  }
+) {
     token
     user {
       id
       email
-      username
       lastName
       firstName
     }
   }
 }`;
 export const UPDATE_USER = gql `mutation UPDATE_USER_BY_ID(
-  $id: ID!, $profilePicture:String,
-  $age:String,$username: String,
+  $id: ID!,
+  $profilePicture:String,
+  $age:String,
   $firstName: String,
   $lastName: String,
-$gender: String,
+  $gender: String,
   $phonenumber: String,
   $roommateInfo:RoommateInput) {
   updateUser(
     id: $id
     updatedUser: {
-      username:$username,
       firstName:$firstName,
       lastName:$lastName,
-age:$age,
-      profilePicture:$profilePicture,
+      age:$age,
       gender: $gender,
-      phonenumber: $phonenumber,
+      phoneNumber: $phonenumber,
       roommateInfo:$roommateInfo
     }
   ) {
     id
-    username
     firstName
     email
     lastName
     age
     gender
-    profilePicture
-    phonenumber
+    phoneNumber
     roommateInfo{
       age
       gender

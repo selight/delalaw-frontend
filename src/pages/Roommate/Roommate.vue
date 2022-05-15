@@ -13,9 +13,9 @@
 
     <div class="row" :class="red">
 
-    <q-input  :class="col" :dense="hidden" outlined v-model="text" autofocus label="Where do you want to live">
+    <q-input  :class="col" :dense="hidden" outlined v-model="searchWord" v-on:keyup.enter="searchString(searchWord), hidden=true , red='justify-start q-ma-sm'" autofocus label="Where do you want to live">
       <template v-slot:append>
-        <q-btn icon="search" v-on:click="hidden=true , red='justify-start q-ma-sm', col='col-md-8 col-lg-8 col-xs-12 '" flat round color="secondary" />
+        <q-btn icon="search"  v-on:click="hidden=true , red='justify-start q-ma-sm', col='col-md-8 col-lg-8 col-xs-12 '" flat round color="secondary" />
       </template>
     </q-input></div>
 
@@ -23,9 +23,14 @@
       <!--    Top cities on the first page-->
     <div class="row q-ma-md justify-center  q-mt-lg" v-if="!hidden" >
       <div class="text-h4 col-12 text-secondary">Top Cities</div>
-  <q-img v-on:click="hidden=true, red='justify-start q-ma-sm', col='col-md-8 col-lg-8 col-xs-12 '" :key="index" v-for="(key,index) in 6" src="~assets/road.jpg"  class="col-lg-4 col-md-4 col-sm-6 col-xs-6 " style="border: solid white 1px">
-        <div class="absolute-full text-h6 flex flex-center">
-          Las Vegas
+
+  <q-img v-on:click="hidden=true, red='justify-start q-ma-sm', col='col-md-8 col-lg-8 col-xs-12 '" :key="index"
+         v-for="(key,index) in 6" :src="POSTS[index].featuredImage[0].image"
+         class="col-lg-4 col-md-4 col-sm-6 col-xs-6"
+         ratio="1"
+         style="border: solid white 1px;">
+        <div v-on:click="searchString(POSTS[index].location)" class="absolute-full text-h6 flex flex-center">
+          {{POSTS[index].location.toUpperCase()}}
         </div>
       </q-img>
 
@@ -40,7 +45,7 @@
       </q-btn>
       <q-dialog  v-model="dialog">
         <q-card style="width: 300px" class="q-px-sm q-pb-md">
-          <q-item-label header>choose your budget range</q-item-label>
+          <q-item-label header>Choose your budget range</q-item-label>
           <q-item-label>{{standard.min}} - {{standard.max}} $</q-item-label>
           <q-item dense>
             <q-item-section avatar>
@@ -57,8 +62,10 @@
               />
             </q-item-section>
           </q-item>
+          <q-card-actions align="right">
+            <q-btn flat label="Done" color="primary" v-on:click="filter" v-close-popup />
+          </q-card-actions>
         </q-card>
-
 
       </q-dialog>
 
@@ -69,7 +76,6 @@
         <div class="text-caption"><span class="text-accent">Age:</span>  {{standard.min}} - {{standard.max}}</div>
       </q-btn>
     </div>
-
     <div class="row q-gutter-lg q-mt-lg justify-evenly" v-if="hidden">
     <div v-if="POSTS.length===0" class="col-12">
       <div class="row q-gutter-lg justify-evenly">
@@ -100,7 +106,6 @@
     data() {
       return {
         POSTS:[],
-
         model: 'One Bedroom',
         nationality:'Any',
         red:"justify-evenly q-ma-md",
@@ -118,12 +123,35 @@
         hidden:false,
         text:'',
         col:"col-xs-12 col-lg-10 col-md-10",
+        searchWord:''
       }
     },
     created() {
-      this.$store.dispatch('Roommate/getPostsWithPagination').then(result =>{
+      this.$store.dispatch('Roommate/getPostsWithPagination',15).then(result =>{
         this.POSTS=result;
       })
+    },
+    methods:{
+      searchString(searchWord){
+        this.searchWord=searchWord
+        this.$store.dispatch('Roommate/searchPost',searchWord).then(result => {
+          if(result.length===0){
+            console.log("sorry we can not find that")
+          }
+          this.POSTS=result;
+          console.log('results :', result)
+        })
+      },
+      filter(){
+         let filterData={
+           gte:this.standard.min,
+           lte:this.standard.max
+         }
+         this.$store.dispatch('Roommate/filterPost',filterData).then(result =>{
+           this.POSTS=result;
+            console.log(result,'filtered')
+         })
+       }
     }
 
   }

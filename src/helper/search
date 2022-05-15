@@ -1,0 +1,37 @@
+import algoliaSearch from 'algoliasearch'
+import algoliasearchHelper from 'algoliasearch-helper'
+
+const client = algoliaSearch('SXEYV3AFMN','928500a603d53331a562e7b166d7aa67');
+const helper = algoliasearchHelper(client, 'bestbuy', {
+  disjunctiveFacets: ['category'],
+  hitsPerPage: 7,
+  maxValuesPerFacet: 3
+})
+
+export const getResultsAsync = () => {
+  return new Promise((resolve, reject) => {
+    helper.once('result', (data) => {
+      resolve(data)
+    })
+  })
+}
+
+export const Query = (query) => {
+  helper.setQuery(query).search()
+}
+
+export const QueryInit = () => {
+  helper.search()
+}
+
+export const toggleFacet = (facetName) => {
+  helper.toggleRefinement('category', facetName).search()
+}
+
+export const nextPage = () => {
+  helper.nextPage().search()
+}
+
+export const prevPage = () => {
+  helper.previousPage().search()
+}

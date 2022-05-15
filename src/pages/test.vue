@@ -91,7 +91,7 @@
 <script>
   export default {
     name: 'Login',
-    data () {
+    data ( ) {
       return {
         email: '',
         username: '',

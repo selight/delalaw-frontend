@@ -1,9 +1,9 @@
 <template>
   <div class="row q-gutter-sm">
-  <q-btn v-google-signin-button="clientId" v-close-popup class="text-white bg-primary">
+  <q-btn v-close-popup class="text-white bg-primary">
     <q-avatar class="q-mx-sm" size="30px"><q-img  src="~assets/google-g-2015.svg"/>
     </q-avatar>
-    <div>Sign in with Google</div>
+    <div v-on:click="getGoogleAuthLink">Sign in with Google</div>
   </q-btn>
   <q-btn class="text-white  bg-primary" v-close-popup @click="logInWithFacebook">
     <q-avatar class="q-mx-sm" size="30px"><q-img  src="~assets/facebook-3.svg"/></q-avatar>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import GoogleSignInButton from 'vue-google-signin-button-directive'
     export default {
         name: "socialComponent",
       data() {
@@ -20,13 +19,10 @@
           clientId:'358091240854-s6hnkvsr5ev4gopfu527p2c6ooletuue.apps.googleusercontent.com'
         }},
       methods:{
-        OnGoogleAuthSuccess (idToken) {
-        
-          console.log(idToken)
-          // Receive the idToken and make your magic with the backend
-        },
-        OnGoogleAuthFail (error) {
-          console.log(error)
+        async getGoogleAuthLink(){
+          await this.$store.dispatch('Auth/getGoogleAuthLink').then((link)=>{
+            window.open(link)
+          });
         },
         async logInWithFacebook() {
           await this.initFacebook();

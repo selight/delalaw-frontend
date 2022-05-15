@@ -4,11 +4,10 @@
     <q-form class="q-ma-md q-gutter-md">
       <social-component></social-component>
             <q-separator/>
-      <q-input filled v-model="user.username" label="Username" lazy-rules />
       <q-input filled v-model="user.firstName" label="First name" lazy-rules />
       <q-input filled v-model="user.lastName" label="Last name" lazy-rules />
       <q-input filled v-model="user.email" label="Email" lazy-rules />
-      <q-input filled v-model="user.phonenumber"  label="Phone number" lazy-rules />
+      <q-input filled v-model="user.phoneNumber"  label="Phone number" lazy-rules />
 
       <q-input
         type="password"
@@ -17,6 +16,21 @@
         label="Password"
         lazy-rules
       />
+      <div id="no-freeze-spinner">
+        <div>
+          <i class="material-icons">
+            account_circle
+          </i>
+          <i class="material-icons">
+            home
+          </i>
+          <i class="material-icons">
+            work
+          </i>
+          <div>
+          </div>
+        </div>
+      </div>
       <div id="recaptcha-container"></div>
       <div class="row q-gutter-md">
         <q-btn
@@ -39,35 +53,42 @@
 
 <script>
     import {registerUser} from "src/store/Auth/actions";
+    import "src/css/spinner.scss";
 import {mapActions} from 'vuex';
     import SocialComponent from "components/socialComponent";
-    import firebase from "firebase";
     export default {
         name: "registerComponent",
       components: {SocialComponent},
       data() {
         return {
           user:{
-            username: "silanew1",
             password: "123456",
             firstName: "sila",
             lastName: "hitech",
-            email: "love@cometpome.com",
-            phonenumber:"+16505553434",
+            email: "silaHItech@tech.com",
+            phoneNumber:"+16505553434",
             phoneVerified:false
           },
           appVerifier : '',
           username:'',
-          password:''
+          password:'',
+          loading:''
         }},
       methods:{
-          ...mapActions({
+          ...mapActions ({
             registerUser:'Auth/registerUser',
             sendOtp:'Auth/sendOtp'
     }),
        async register(){
-
-          await  this.registerUser(this.user);
+          this.loading= true;
+          await this.registerUser(this.user).then(async (user) =>{
+            console.log("from register",user)
+            this.loading=false;
+            // await this.sendOtp(user);
+            if(user!==undefined) {
+              await this.$router.push('/')
+            }
+          })
           },
 
       },

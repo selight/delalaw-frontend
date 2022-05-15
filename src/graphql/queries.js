@@ -4,18 +4,53 @@ query AUTH_USER {
   authUser{
     id
     lastName
-    username
+    phoneNumber
     firstName
     email
-    profilePicture
   }
 }`;
+export const Search_Post = gql `
+  query SearchPost($query:String){
+    searchPost(query:$query){
+      id
+      location
+      price
+      content
+      size
+      featuredImage{
+        image
+      }
+
+    }
+  }
+`;
+export const FILTER_POST = gql `
+  query FilterPost($gte:Int,$lte:Int){
+    filterPost(query:{
+      gte:$gte,
+      lte:$lte
+    }){
+      id
+      price
+      location
+      featuredImage{
+        image
+        size
+      }
+    }
+  }
+`
+export const GET_GOOGLE_AUTH_LINK = gql `
+  query getGoogleAuthLink {
+    getGoogleAuthLink
+  }
+`;
 export const AUTHENTICATE_USER=gql`query LOGIN_USER (
-    $username: String!,
+    $phoneNumber: String!,
     $password: String!
   ) {
   loginUser(
-      username: $username,
+    phoneNumber: $phoneNumber,
       password: $password
     ) {
     token
@@ -24,7 +59,6 @@ export const AUTHENTICATE_USER=gql`query LOGIN_USER (
       email
       firstName
       lastName
-      profilePicture
       roommateInfo{
        age
         gender
@@ -56,7 +90,7 @@ query GET_POSTS_BY_LIMIT_AND_PAGE(
           }
       author{
         id
-        username
+        phoneNumber
         firstName
         lastName
       }
@@ -90,7 +124,7 @@ export const GET_MY_POSTS_WITH_PAGINATION= gql `
       price
       author{
         id
-        username
+        phoneNumber
         firstName
         lastName
       }
@@ -124,8 +158,9 @@ export const GET_POST_BY_ID =gql `query POST_BY_ID($id: ID!) {
     }
     author {
       id
-      username
+      phoneNumber
       firstName
+      lastName
     }
   }
 }`;
@@ -150,7 +185,7 @@ query GET_POSTS_BY_LIMIT_AND_PAGE(
               services
       author{
         id
-        username
+        phoneNumber
         firstName
         lastName
         profilePicture
@@ -182,7 +217,7 @@ query GET_ALL_MY_POSTS_WITH_PAGINATION{
               services
       author{
         id
-        username
+        phoneNumber
         firstName
         lastName
       }
@@ -212,7 +247,7 @@ export const GET_HANDYMAN_POST_BY_ID =gql `query HANDYMAN_POST_BY_ID($id: ID!) {
     updatedAt
     author {
       id
-      username
+      phoneNumber
       firstName
     }
   }
