@@ -1,11 +1,9 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import {createStore} from 'vuex'
 import Auth from "src/store/Auth";
 import Roommate from "src/store/Roommate";
 import Handyman from "src/store/Handyman";
 // import example from './Auth'
 
-Vue.use(Vuex)
 
 /*
  * If not building with SSR mode, you can
@@ -17,7 +15,7 @@ Vue.use(Vuex)
  */
 
 export default function (/* { ssrContext } */) {
-  const Store = new Vuex.Store({
+  return new createStore({
     modules: {
       Auth,
       Roommate,
@@ -28,6 +26,4 @@ export default function (/* { ssrContext } */) {
     // for dev mode only
     strict: process.env.DEBUGGING
   })
-
-  return Store
 }

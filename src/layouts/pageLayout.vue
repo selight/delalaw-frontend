@@ -1,9 +1,3 @@
-<script>
-  import Authentication from "components/Authentication";
-  export default {
-    components: {Authentication}
-  }
-</script>
 <template>
     <q-layout view="hHh LpR fff" class="">
       <q-header  elevated style="background-image: linear-gradient(135deg, rgb(9, 32, 63) 10%, rgb(83, 120, 149) 100%);">

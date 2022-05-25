@@ -19,18 +19,18 @@
           <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
           <q-btn color="primary" flat rounded  to="/roommate">
             <q-img src="~assets/office.svg" style="max-width: 80px" ></q-img>
-            <span class="q-mt-sm">Roommate</span>
+            <span class="q-mt-sm">roommate}}</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
          <q-btn color="primary" flat rounded to="/newsfeed" >
             <q-img src="~assets/football.svg" style="max-width: 80px"></q-img>
-           <span class="q-mt-sm">News Feed</span>
+           <span class="q-mt-sm">newsFeed}}</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style=" text-align:center;">
           <q-btn v-on:click="localStorage.setItem('hey','hyh')" color="primary" flat rounded to="/handyman">
             <q-img src="~assets/wrench.svg" style="max-width: 80px"></q-img>
 
-            <span class="q-mt-sm">Handyman</span>
+            <span class="q-mt-sm">handyman</span>
           </q-btn></div>
              <div  class=" col-md-auto col-lg-auto col-sm-4 col-xs-4" style="text-align:center;">
           <q-btn color="primary"   flat rounded to="/enetewawek">
@@ -98,8 +98,6 @@
 <script>
   import CarouselComponent from "../components/carouselComponent.vue";
   import AvatarComponent from "components/avatarComponent";
-  import {mapActions} from 'vuex'
-  // import CarouselComponent from '../components/carouselComponent.vue'
   export default {
     name: "PageIndex",
     components: {AvatarComponent, CarouselComponent},
@@ -126,7 +124,11 @@
           paddingTop: "3px",
           paddingBottom: "3px",
         },
-        POSTS:[]
+        POSTS:[],
+        // localeOptions: [
+        //   { value: 'en-US', label: 'English' },
+        //   { value: 'am-ET', label: 'Amharic' }
+        // ]
       };
     },
     created() {

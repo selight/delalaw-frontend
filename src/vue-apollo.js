@@ -1,15 +1,13 @@
 import Vue from 'vue'
-import VueApollo from 'vue-apollo'
-import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client'
-import {setContext} from 'apollo-link-context'
-// Install the vue plugin
-Vue.use(VueApollo)
-
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client/core'
+import { createApolloProvider } from '@vue/apollo-option'
+import {setContext} from "@apollo/client/link/context";
+import {WebSocketLink} from "@apollo/client/link/ws";
 // Name of the localStorage item
 const AUTH_TOKEN = 'apollo-token'
 
 // Http endpoint
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://localhost:4000/graphql'
+const httpEndpoint =  'http://localhost:4000/graphql'
 const authLink = setContext(async (_,{headers})=>{
   const token=localStorage.getItem('apollo-token');
   return{
@@ -17,42 +15,36 @@ const authLink = setContext(async (_,{headers})=>{
     Authorization:token || ''
   }
 });
+const httpLink = new HttpLink({
+  // You should use an absolute URL here
+  uri:httpEndpoint,
+})
+
+// Create the subscription websocket link
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:4000/subscriptions',
+  options: {
+    reconnect: true,
+  },
+})
 // Config
 const defaultOptions = {
-  // You can use `https` for secure connection (recommended in production)
   httpEndpoint,
-  // You can use `wss` for secure connection (recommended in production)
-  // Use `null` to disable subscriptions
-  // wsEndpoint: process.env.VUE_APP_GRAPHQL_WS || 'ws://localhost:3000/graphql',
   wsEndpoint:null,
-  // LocalStorage token
   tokenName: AUTH_TOKEN,
   persisting: false,
   websocketsOnly: false,
-  // Is being rendered on the server?
   ssr: false,
-
-  // Override default apollo link
-  // note: don't override httpLink here, specify httpLink options in the
-  // httpLinkOptions property of defaultOptions.
+  cache: new InMemoryCache(),
+  connectToDevTools: true,
   link: authLink
-
-  // Override default cache
-  // cache: myCache
-
-  // Override the way the Authorization header is set
-  // getAuth: (tokenName) => ...
-
-  // Additional ApolloClient options
-  // apollo: { ... }
-
-  // Client local data (see apollo-link-state)
-  // clientState: { resolvers: { ... }, defaults: { ... } }
 }
-
-export const { apolloClient} = createApolloClient({
-  ...defaultOptions,
-
+// Create the apollo client
+export const apolloClient = new ApolloClient({
+  ...defaultOptions
+})
+export const apolloProvider = createApolloProvider({
+  defaultClient: apolloClient,
 })
 // Call this in the Vue app file
 export function createProvider (options = {}) {
@@ -62,20 +54,6 @@ export function createProvider (options = {}) {
     ...options,
   })
   apolloClient.wsClient = wsClient
-
-  // Create vue apollo provider
-  const apolloProvider = new VueApollo({
-    defaultClient: apolloClient,
-    defaultOptions: {
-      $query: {
-        // fetchPolicy: 'cache-and-network',
-      },
-    },
-    errorHandler (error) {
-      // eslint-disable-next-line no-console
-      console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
-    },
-  })
 
   return apolloProvider
 }
